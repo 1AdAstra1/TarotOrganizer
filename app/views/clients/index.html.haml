@@ -1,0 +1,24 @@
+%h1 Список клиентов
+
+%a#drop_filters{:href => clients_path({:drop_filters => '1'})} Сбросить фильтры
+
+%table#clients
+  %thead
+    %tr
+      %th 
+        %a#name_header{:href => sort_clients_path('name', {:ratings => @current_ratings})} Имя
+      %th Комментарий
+      %th
+      %th
+      %th
+  %tbody
+    - @clients.each do |client|
+      %tr
+        %td= link_to client.name, client
+        %td= client.comment
+        %td= link_to 'Редактировать', edit_client_path(client)
+        %td= button_to 'Удалить', client, :method => :delete, :confirm => 'Вы уверены, что хотите удалить этого клиента из базы?'
+
+%br
+
+= link_to 'Добавить клиента', new_client_path
