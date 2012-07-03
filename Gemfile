@@ -28,9 +28,20 @@ end
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
-gem "cucumber-rails", :group => [:development, :test]
-gem "capybara", :group => [:development, :test]
+group :development, :test do
+  gem "cucumber-rails"
+  gem "cucumber-rails-training-wheels"
+  gem "database_cleaner"
+  gem "capybara"
+  gem "rspec-rails", ">= 2.0.1"
+  gem 'factory_girl_rails'
+  gem 'simplecov', :require => false
+end
+
 gem "haml", ">= 3.0.0"
 gem "haml-rails"
 gem "jquery-rails"
-gem "rspec-rails", ">= 2.0.1", :group => [:development, :test]
+
+
+gem "babelphish"
+gem "uploader"
