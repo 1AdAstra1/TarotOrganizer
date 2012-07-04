@@ -13,15 +13,21 @@ class ClientsController < ApplicationController
       @sort_column = session[:sort] || 'id'
     end
     
-    if (params[:sort] == nil and session[:sort] != nil) then
+    if (params[:sort] == nil and session[:sort] != nil) || (params[:filter] == nil and session[:filter_name] != nil) then
       flash.keep
-      redirect_to clients_path ({:sort => session[:sort]}) and return
+      redirect_to clients_path ({:sort => session[:sort], 'filter[name]' => session[:filter_name]}) and return
     end
     
     session[:sort] = @sort_column
     query_params[:order] =  @sort_column + ' ASC'
     
-    @clients = Client.find(:all, query_params)
+    if  (params[:filter] != nil) and (!params[:filter]['name'].empty?) then
+      puts params[:filter]['name']
+      session[:filter_name] = params[:filter]['name']
+      @clients = Client.where(Client.arel_table[:name].matches("%#{params[:filter]['name']}%")).order(query_params[:order])
+    else
+      @clients = Client.find(:all, query_params)
+    end
 
     respond_to do |format|
       format.html # index.html.erb

@@ -9,6 +9,18 @@ Given /the following clients exist/ do |clients_table|
   end
 end
 
+Then /I should (not )?see the following clients: (.*)/ do |unsee, clients_list|
+  clients_list = clients_list.split(',')
+  clients_list.each do |client|
+    client.strip!
+    if unsee == nil then     
+      page.should have_xpath('//*', :text => client)
+    else
+      page.should_not have_xpath('//*', :text => client)
+    end
+  end
+end
+
 Then /I should see all of the clients/ do
   total_clients = Client.all.length
   page.should have_xpath("//table[@id='clients']/tbody/tr", :count => total_clients)
@@ -16,6 +28,10 @@ end
 
 When /I sort clients by "([^"]*)"/ do |sort_link|
   click_link(sort_link)
+end
+
+When /^I filter clients by "(.*?)" in the name$/ do |search_string|
+  fill_in('filter_name', :with => search_string) and click_button 'filter_apply'
 end
 
 When /I drop the list filters/ do 

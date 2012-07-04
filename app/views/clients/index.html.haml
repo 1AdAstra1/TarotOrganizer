@@ -1,12 +1,18 @@
 %h1 Список клиентов
 
+= form_tag clients_path, :method => :get do
+  Фильтр: 
+  = text_field :filter, :name
+  = hidden_field_tag 'sort', @sort_column
+  = submit_tag 'Применить', :id => 'filter_apply'
+  
 %a#drop_filters{:href => clients_path({:drop_filters => '1'})} Сбросить фильтры
 
 %table#clients
   %thead
     %tr
-      %th 
-        %a#name_header{:href => sort_clients_path('name', {:ratings => @current_ratings})} Имя
+      %th{:class => (@sort_column == 'name'? 'sort_column' : '')} 
+        %a#name_header{:href => sort_clients_path('name')} Имя
       %th Комментарий
       %th
       %th
