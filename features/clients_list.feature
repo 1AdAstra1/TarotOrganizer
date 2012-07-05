@@ -46,4 +46,8 @@ Scenario: leaving this page to edit a client
 Scenario: leaving this page to add a client
   When I follow "Добавить клиента"
   Then I should be on the new client page
-  
+ 
+Scenario: deleting a client
+  When I click the button "Удалить" in the row with Cheburashka
+  Then I should be on the clients page
+  And I should not see the following clients: Cheburashka  

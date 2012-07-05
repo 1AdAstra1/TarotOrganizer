@@ -38,10 +38,16 @@ When /I drop the list filters/ do
   click_link('drop_filters')
 end
 
-When /I click "([^"]+)" in the row with (.*)/ do |link, row_marker|
+When /I click (the button )?"([^"]+)" in the row with (.*)/ do |button, link, row_marker|
   cell = page.find(:xpath, "//table[@id='clients']/tbody/tr/td/*", :text => row_marker)
-  link = cell.find(:xpath, "ancestor-or-self::tr[1]/td/a", :text => link)[:id]
-  click_link(link)
+  if button == nil then
+    link = cell.find(:xpath, "ancestor-or-self::tr[1]/td//a", :text => link)[:id]
+    click_link(link)
+  else
+    button = cell.find(:xpath, "ancestor-or-self::tr[1]/td//input[@value='" + link + "']")[:id]
+    click_button(button)
+  end
+  
 end
 
 # Make sure that one string (regexp) occurs before or after another one
