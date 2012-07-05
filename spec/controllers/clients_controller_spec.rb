@@ -24,7 +24,7 @@ describe ClientsController do
   # Client. As you add validations to Client, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    {:name => 'test', :comment => 'test'}
   end
   
   # This should return the minimal set of values that should be in the session

@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :client do
-    name "MyString"
-    comment "MyString"
+    name "John Doe"
+    comment "Dummy character"
   end
 end
