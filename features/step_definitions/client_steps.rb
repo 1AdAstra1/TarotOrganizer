@@ -38,6 +38,12 @@ When /I drop the list filters/ do
   click_link('drop_filters')
 end
 
+When /I click "([^"]+)" in the row with (.*)/ do |link, row_marker|
+  cell = page.find(:xpath, "//table[@id='clients']/tbody/tr/td/*", :text => row_marker)
+  link = cell.find(:xpath, "ancestor-or-self::tr[1]/td/a", :text => link)[:id]
+  click_link(link)
+end
+
 # Make sure that one string (regexp) occurs before or after another one
 #   on the same page
 
@@ -45,4 +51,13 @@ Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #  ensure that that e1 occurs before e2.
   #  page.content  is the entire content of the page as a string.
   page.body.rindex(e1).should < page.body.rindex(e2)
+end
+
+Then /I should be redirected to the (edit )?client page for (.*)/ do |edit, client|
+  current_path = URI.parse(current_url).path
+  if edit == nil then
+    current_path.should =~ /clients\/\d+$/ and page.should have_xpath('//*', :text => client)
+  else
+    current_path.should =~ /clients\/\d+\/edit$/ and page.should have_xpath('//*', :text => client)
+  end
 end

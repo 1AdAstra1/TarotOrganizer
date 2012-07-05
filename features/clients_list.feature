@@ -34,3 +34,16 @@ Scenario: dropping filters
   When I drop the list filters
   Then I should see "John Doe" before "Harry Potter"
   And I should see all of the clients
+
+Scenario: leaving this page for client view
+  When I follow "John Doe"
+  Then I should be redirected to the client page for John Doe
+  
+Scenario: leaving this page to edit a client
+  When I click "Редактировать" in the row with Harry Potter
+  Then I should be redirected to the edit client page for Harry Potter
+  
+Scenario: leaving this page to add a client
+  When I follow "Добавить клиента"
+  Then I should be on the new client page
+  

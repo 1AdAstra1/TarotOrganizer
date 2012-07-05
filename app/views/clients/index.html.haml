@@ -22,7 +22,7 @@
       %tr
         %td= link_to client.name, client
         %td= client.comment
-        %td= link_to 'Редактировать', edit_client_path(client)
+        %td= link_to 'Редактировать', edit_client_path(client), :id => 'edit_client_' + client.id.to_s
         %td= button_to 'Удалить', client, :method => :delete, :confirm => 'Вы уверены, что хотите удалить этого клиента из базы?'
 
 %br
