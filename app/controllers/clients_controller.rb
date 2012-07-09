@@ -22,9 +22,8 @@ class ClientsController < ApplicationController
     query_params[:order] =  @sort_column + ' ASC'
     
     if  (params[:filter] != nil) and (!params[:filter]['name'].empty?) then
-      puts params[:filter]['name']
       session[:filter_name] = params[:filter]['name']
-      @clients = Client.where(Client.arel_table[:name].matches("%#{params[:filter]['name']}%")).order(query_params[:order])
+      @clients = Client.search_in_name(params[:filter]['name']).order(query_params[:order])
     else
       @clients = Client.find(:all, query_params)
     end

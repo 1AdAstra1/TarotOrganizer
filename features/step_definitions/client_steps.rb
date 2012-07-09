@@ -1,3 +1,5 @@
+
+
 #Declarative step for populating the clients table
 
 Given /the following clients exist/ do |clients_table|
@@ -26,11 +28,11 @@ Then /I should see all of the clients/ do
   page.should have_xpath("//table[@id='clients']/tbody/tr", :count => total_clients)
 end
 
-When /I sort clients by "([^"]*)"/ do |sort_link|
+When /I sort clients by "([^"]+)"/ do |sort_link|
   click_link(sort_link)
 end
 
-When /^I filter clients by "(.*?)" in the name$/ do |search_string|
+When /^I filter clients by "([^"]+)" in the name$/ do |search_string|
   fill_in('filter_name', :with => search_string) and click_button 'filter_apply'
 end
 
@@ -47,8 +49,29 @@ When /I click (the button )?"([^"]+)" in the row with (.*)/ do |button, link, ro
     button = cell.find(:xpath, "ancestor-or-self::tr[1]/td//input[@value='" + link + "']")[:id]
     click_button(button)
   end
-  
 end
+
+When /I fill the form with values: (.*)/ do |values|
+  pairs = values.split(',')
+  pairs.each do |str|
+    str.strip!
+    matches = /"([^"]+)" for (.*)/.match(str)
+    fill_in(matches[2], :with => matches[1])
+  end
+end
+
+When /I set "([^"]+)" as (.*)/ do |date, date_select|
+  matches = /(?<day>\d{2}) (?<month>\p{Word}+) (?<year>\d{4})/u.match(date)
+  select(matches[:day], :from => date_select + '_3i')
+  select(matches[:month], :from => date_select + '_2i')
+  select(matches[:year], :from => date_select + '_1i')
+end
+
+When /I submit the form/ do
+  input = page.find(:xpath, "//input[@name='commit']")
+  click_button(input[:value])
+end
+
 
 # Make sure that one string (regexp) occurs before or after another one
 #   on the same page

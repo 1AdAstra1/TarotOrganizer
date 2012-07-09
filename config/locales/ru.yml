@@ -137,6 +137,8 @@ ru:
       not_an_integer: не является целым числом
       odd: может иметь лишь четное значение
       record_invalid: ! 'Возникли ошибки: %{errors}'
+      future_date: не может быть больше текущей даты
+      past_date: не может быть меньше текущей даты
       taken: уже существует
       too_long:
         few: слишком большой длины (не может быть больше чем %{count} символа)
@@ -248,13 +250,19 @@ ru:
       long: ! '%d %B %Y, %H:%M'
       short: ! '%d %b, %H:%M'
     pm: вечера
-    
-  models: &models
-    client: "Клиент"
-  attributes: &attributes
-    client:
+  
+  client_atts: &client_atts
       name: "Имя клиента"
       comment: "Комментарий"
+      start_date: "Дата начала работы с клиентом"
+      
+  models: &models
+    client: "Клиент"
+    
+  attributes: &attributes
+    client:
+      <<: *client_atts
+  
   # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
     errors:
@@ -270,8 +278,8 @@ ru:
        <<: *models
     attributes:
        <<: *attributes
-      
-  #app-specific strings
-  
-  name: "Имя"
-  comment: "Комментарий"
+       
+  helpers:
+    label:
+      client:
+        <<: *client_atts

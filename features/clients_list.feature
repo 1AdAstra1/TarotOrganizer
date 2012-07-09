@@ -7,12 +7,12 @@ Feature: display list of clients
 Background: clients have been added to database
 
   Given the following clients exist:
-  | name                   | comment |
-  | John Doe               | Dumb idiot, but pays a lot of money |
-  | Harry Potter           | Little cute schoolboy, mmmmm |
-  | Vasya Pupkin           | Some dude I met online |
-  | Kuzya Tapochkin        | Wants a spread about his GF |
-  | Cheburashka            | Fantasy creature |
+  | name                   | start_date | comment |
+  | John Doe               | 2012-01-03	| Dumb idiot, but pays a lot of money |
+  | Harry Potter           | 2012-02-04	| Little cute schoolboy, mmmmm |
+  | Vasya Pupkin           | 2012-01-05	| Some dude I met online |
+  | Kuzya Tapochkin        | 2012-01-08	| Wants a spread about his GF |
+  | Cheburashka            | 2012-03-06	| Fantasy creature |
 
   And I am on the clients page
   

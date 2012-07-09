@@ -4,13 +4,18 @@
       %h2= "Следующие ошибки препятствуют сохранению клиента:"
       %ul
         - @client.errors.full_messages.each do |msg|
-          %li= t(msg)
+          %li= msg
 
   .field
-    = f.label :name, t(:name)
+    = f.label :name, t("helpers.label.client.name")
     = f.text_field :name
   .field
-    = f.label :comment, t(:comment)
+    = f.label :comment, t("helpers.label.client.comment")
     = f.text_area :comment
+  .field
+    = f.label :start_date, t("helpers.label.client.start_date")
+    = f.date_select :start_date
   .actions
-    = f.submit 'Save'
+    = f.submit 'Сохранить клиента'
+
+= button_to 'Отмена', :back, :method => :get
