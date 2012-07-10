@@ -1,0 +1,27 @@
+%h1 Listing spreads
+
+%table
+  %tr
+    %th Client
+    %th Name
+    %th Date
+    %th Structure
+    %th Comment
+    %th Feedback
+    %th
+    %th
+    %th
+
+  - @spreads.each do |spread|
+    %tr
+      %td= spread.client_id
+      %td= spread.name
+      %td= spread.date
+      %td= spread.structure
+      %td= spread.comment
+      %td= spread.feedback
+      %td= link_to 'Show', spread
+      %td= link_to 'Edit', edit_spread_path(spread)
+      %td= link_to 'Destroy', spread, :confirm => 'Are you sure?', :method => :delete
+
+%br

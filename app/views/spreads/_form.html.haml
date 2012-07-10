@@ -1,0 +1,28 @@
+= form_for @spread do |f|
+  -if @spread.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@spread.errors.count, "error")} prohibited this spread from being saved:"
+      %ul
+        - @spread.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :client_id
+    = f.number_field :client_id
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :date
+    = f.date_select :date
+  .field
+    = f.label :structure
+    = f.text_field :structure
+  .field
+    = f.label :comment
+    = f.text_field :comment
+  .field
+    = f.label :feedback
+    = f.text_field :feedback
+  .actions
+    = f.submit 'Save'

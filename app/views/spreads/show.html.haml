@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Client:
+  = @spread.client_id
+%p
+  %b Name:
+  = @spread.name
+%p
+  %b Date:
+  = @spread.date
+%p
+  %b Structure:
+  = @spread.structure
+%p
+  %b Comment:
+  = @spread.comment
+%p
+  %b Feedback:
+  = @spread.feedback
+
+= link_to 'Edit', edit_client_spread_path(@spread)
+\|
+= link_to 'Back', client_spreads_path
