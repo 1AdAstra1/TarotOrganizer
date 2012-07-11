@@ -15,9 +15,10 @@
   %p Для этого клиента пока не добавлены расклады.
 - else
   %h3 Расклады:
+  %div#client_spreads
   - @client.spreads.each do |spread|
     %p
-      = link_to spread.date + ':', client_spread_path(@client, spread) 
+      = link_to spread.date.to_s + ':', client_spread_path(@client, spread) 
       = spread.name
 
 = link_to 'Редактировать', edit_client_path(@client)

@@ -1,27 +1,52 @@
-
+def populate_table (table, model)
+  table.hashes.each do |item|
+  # each returned element will be a hash whose key is the table header.
+  # you should arrange to add that client to the database here.
+    new_item = model.create!(item)
+    model.find_by_name(item[:name]).should be_true
+  end
+end
 
 #Declarative step for populating the clients table
 
 Given /the following clients exist/ do |clients_table|
-  clients_table.hashes.each do |client|
-    # each returned element will be a hash whose key is the table header.
-    # you should arrange to add that client to the database here.
-    new_client = Client.create!(client)
-    Client.find_by_name(client[:name]).should be_true
+  populate_table(clients_table, Client)
+end
+
+#Declarative step for populating the spreads table
+
+Given /the following spreads exist/ do |spreads_table|
+  spreads_table.hashes.each do |item|
+  # each returned element will be a hash whose key is the table header.
+  # you should arrange to add that client to the database here.
+    new_item = Spread.create(item)
+    client = Client.find_by_id(item[:client_id])
+    client.spreads.push(new_item)
+    client.save
+    Spread.find_by_name(item[:name]).should be_true
+  end
+end
+
+def group_exists(unsee, list, xpath='//*')
+  list = list.split(',')
+  list.each do |item|
+    item.strip!
+    if unsee == nil then
+      page.should have_xpath(xpath, :text => item)
+    else
+      page.should_not have_xpath(xpath, :text => item)
+    end
   end
 end
 
 Then /I should (not )?see the following clients: (.*)/ do |unsee, clients_list|
-  clients_list = clients_list.split(',')
-  clients_list.each do |client|
-    client.strip!
-    if unsee == nil then     
-      page.should have_xpath('//*', :text => client)
-    else
-      page.should_not have_xpath('//*', :text => client)
-    end
-  end
+  group_exists(unsee, clients_list)
 end
+
+Then /I should (not )?see the following spreads: (.*)/ do |unsee, spreads_list|
+  group_exists(unsee, spreads_list, '//*')
+end
+
 
 Then /I should see all of the clients/ do
   total_clients = Client.all.length
@@ -36,7 +61,7 @@ When /^I filter clients by "([^"]+)" in the name$/ do |search_string|
   fill_in('filter_name', :with => search_string) and click_button 'filter_apply'
 end
 
-When /I drop the list filters/ do 
+When /I drop the list filters/ do
   click_link('drop_filters')
 end
 
@@ -72,13 +97,17 @@ When /I submit the form/ do
   click_button(input[:value])
 end
 
+When /I view ([^']+)'s profile/ do |name|
+  client = Client.find_by_name(name)
+  visit client_path(client)
+end
 
 # Make sure that one string (regexp) occurs before or after another one
 #   on the same page
 
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
-  #  ensure that that e1 occurs before e2.
-  #  page.content  is the entire content of the page as a string.
+#  ensure that that e1 occurs before e2.
+#  page.content  is the entire content of the page as a string.
   page.body.rindex(e1).should < page.body.rindex(e2)
 end
 

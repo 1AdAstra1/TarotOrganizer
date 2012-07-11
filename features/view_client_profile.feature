@@ -18,6 +18,6 @@ Background: clients have been added to database
   | very magical	| 2				| {aa:'666'} 	| 2012-07-03	| hocus pocus	| very good!	|		
 		
 Scenario: show the list of clients
-  When I am viewing John Doe's profile
+  When I view John Doe's profile
   Then I should see the following spreads: test spread, test spread 2
   And I should not see the following spreads: very magical
