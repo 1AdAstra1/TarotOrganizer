@@ -1,12 +1,27 @@
+%h1= @client.name
+
 %p#notice= notice
 
 %p
-  %b Name:
-  = @client.name
-%p
-  %b Comment:
-  = @client.comment
+  %strong= t("helpers.label.client.start_date") + ':'
+  = @client.start_date
 
-= link_to 'Edit', edit_client_path(@client)
+%p
+  %strong= t("helpers.label.client.comment") + ':'
+  %br
+  = @client.comment
+  
+- if(@client.spreads.length == 0) then
+  %p Для этого клиента пока не добавлены расклады.
+- else
+  %h3 Расклады:
+  - @client.spreads.each do |spread|
+    %p
+      = link_to spread.date + ':', client_spread_path(@client, spread) 
+      = spread.name
+
+= link_to 'Редактировать', edit_client_path(@client)
 \|
-= link_to 'Back', clients_path
+= link_to 'Создать расклад для этого клиента', new_client_spread_path(@client)
+\|
+= link_to 'Вернуться к списку клиентов', clients_path
