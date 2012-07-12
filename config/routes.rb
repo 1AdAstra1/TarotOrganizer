@@ -3,6 +3,8 @@ TarotOrganizer::Application.routes.draw do
   resources :clients do
     resources :spreads 
   end
+  
+  resources :spreads
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

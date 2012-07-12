@@ -9,7 +9,7 @@
 %p
   %strong= t("helpers.label.client.comment") + ':'
   %br
-  = @client.comment
+  = raw @client.print_comment
   
 - if(@client.spreads.length == 0) then
   %p Для этого клиента пока не добавлены расклады.
