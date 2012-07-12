@@ -19,8 +19,11 @@ Given /the following spreads exist/ do |spreads_table|
   spreads_table.hashes.each do |item|
   # each returned element will be a hash whose key is the table header.
   # you should arrange to add that client to the database here.
+    name = item.delete('client_name')
+    puts item.inspect
     new_item = Spread.create(item)
-    client = Client.find_by_id(item[:client_id])
+    puts Client.all.inspect
+    client = Client.find_by_name(name)
     client.spreads.push(new_item)
     client.save
     Spread.find_by_name(item[:name]).should be_true

@@ -12,10 +12,10 @@ Background: clients have been added to database
   | Harry Potter           | 2012-02-04	| Little cute schoolboy, mmmmm |
 
   And the following spreads exist:
-  | name			| client_id		| structure		| date 			| comment		| feedback		|
-  | test spread 	| 1				| {aa:'bb'} 	| 2012-01-05	| this is a test| none			|	
-  | test spread 2	| 1				| {aa:'cc'} 	| 2012-01-06	| this is a test| 				|	
-  | very magical	| 2				| {aa:'666'} 	| 2012-07-03	| hocus pocus	| very good!	|		
+  | name			| client_name	| structure		| date 			| comment		| feedback		|
+  | test spread 	| John Doe		| {aa:'bb'} 	| 2012-01-05	| this is a test| none			|	
+  | test spread 2	| John Doe		| {aa:'cc'} 	| 2012-01-06	| this is a test| 				|
+  | very magical	| Harry Potter	| {aa:'666'} 	| 2012-07-03	| hocus pocus	| very good!	|		
 		
 Scenario: show the list of clients
   When I view John Doe's profile
