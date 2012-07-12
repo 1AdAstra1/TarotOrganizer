@@ -20,7 +20,6 @@ Given /the following spreads exist/ do |spreads_table|
   # each returned element will be a hash whose key is the table header.
   # you should arrange to add that client to the database here.
     name = item.delete('client_name')
-    puts item.inspect
     new_item = Spread.create(item)
     puts Client.all.inspect
     client = Client.find_by_name(name)
