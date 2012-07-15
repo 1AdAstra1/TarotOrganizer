@@ -2,6 +2,8 @@
 
 = render 'form'
 
-= link_to 'Show', @spread
+= link_to 'Просмотр расклада', @spread
 \|
-= link_to 'Back', client_spreads_path
+= link_to 'Все расклады для этого клиента', client_path(@spread.client)
+\|
+= link_to 'Список всех раскладов', spreads_path

@@ -52,5 +52,10 @@ describe Client do
     it 'should auto-format newlines as HTML <br /> tags' do
       @items[:multiline].print_comment.should =~ /Test comment<br \/>\s+<br \/>\s+In 2 lines!/
     end
+    
+    it 'should give error on non-existing methods or fields' do
+      Client.nonexistent_method.should raise_error
+      @items[:multiline].print_nofield.should raise_error
+    end
   end
 end
