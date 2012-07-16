@@ -23,6 +23,6 @@
 
 = link_to 'Редактировать', edit_client_path(@client)
 \|
-= link_to 'Создать расклад для этого клиента', new_client_spread_path(@client)
+= link_to 'Создать расклад для этого клиента', new_client_spread_path(@client), {:id => 'add_spread_link'}
 \|
 = link_to 'Вернуться к списку клиентов', clients_path

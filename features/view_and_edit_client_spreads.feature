@@ -22,7 +22,13 @@ Scenario: show the list of clients
   Then I should see the following spreads: test spread, test spread 2
   And I should not see the following spreads: very magical
   
-Scenario: leaving this page to view a spread
+Scenario: leaving the list page to view a spread
   When I view John Doe's profile
   And I follow "2012-01-05"
   Then I should be redirected to the spread page for test spread
+  
+Scenario: leaving the list page to add a spread
+  When I view Harry Potter's profile
+  And I follow "add_spread_link"
+  Then I should be adding a new spread for Harry Potter
+  And "Harry Potter" should be selected for "spread_client_id"

@@ -8,8 +8,7 @@
 
   .field
     = f.label :client_id
-    = f.select :client_id, @all_clients
-  .field
+    = f.select :client_id, @all_clients, {:selected => @for_client||@spread.client.id ||''}
     = f.label :name
     = f.text_field :name
   .field

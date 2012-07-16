@@ -120,3 +120,13 @@ Then /I should be redirected to the (edit )?(\w+) page for (.*)/ do |edit, model
     current_path.should =~ /#{model}s\/\d+\/edit$/ and page.should have_xpath('//*', :text => name)
   end
 end
+
+Then /^I should be adding a new spread for (.*)$/ do |client_name|
+  client_id = Client.find_by_name(client_name).id
+  current_path.should =~ /clients\/#{client_id}\/spreads\/new$/ and page.should have_xpath('//*', :text => client_name)
+end
+
+Then /^"([^"]*)" should be selected for "([^"]*)"$/ do |value, field|
+  field_labeled(field).native.xpath(".//option[@selected = 'selected']").inner_html.should =~ /#{value}/ 
+end
+

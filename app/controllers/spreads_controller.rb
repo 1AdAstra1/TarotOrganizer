@@ -26,6 +26,7 @@ class SpreadsController < ApplicationController
   def new
     @spread = Spread.new
     @all_clients = Client.all.collect {|item| [item.name, item.id]}
+    @for_client = params[:client_id]
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @spread }
@@ -36,6 +37,7 @@ class SpreadsController < ApplicationController
   def edit
     @spread = Spread.find(params[:id])
     @all_clients = Client.all.collect {|item| [item.name, item.id]}
+    puts params.inspect
   end
 
   # POST /spreads
