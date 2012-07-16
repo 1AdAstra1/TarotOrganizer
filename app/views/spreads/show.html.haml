@@ -1,24 +1,25 @@
+%h1= @spread.name
+
 %p#notice= notice
 
 %p
-  %b Client:
-  = @spread.client_id
+  %strong=t("helpers.label.spread.client_id") + ':'
+  = link_to @spread.client.name, client_path(@spread.client)
 %p
-  %b Name:
-  = @spread.name
-%p
-  %b Date:
+  %strong=t("helpers.label.spread.date") + ':'
   = @spread.date
 %p
-  %b Structure:
+  %strong=t("helpers.label.spread.structure") + ':'
   = @spread.structure
 %p
-  %b Comment:
+  %strong=t("helpers.label.spread.comment") + ':'
   = @spread.comment
 %p
-  %b Feedback:
+  %strong=t("helpers.label.spread.feedback") + ':'
   = @spread.feedback
 
-= link_to 'Edit', edit_client_spread_path(@spread)
+= link_to 'Редактировать расклад', edit_spread_path(@spread)
 \|
-= link_to 'Back', client_spreads_path
+= link_to 'Все расклады для этого клиента', client_path(@spread.client)
+\|
+= link_to 'Список всех раскладов', spreads_path

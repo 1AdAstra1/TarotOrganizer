@@ -19,12 +19,19 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe SpreadsController do
+  
+  before :each do
+    client = Client.create({:name => 'test', :comment => 'test', :start_date => '2010-11-21'})
+    @spread = Spread.create valid_attributes
+    @spread.client = client
+    @spread.save!
+  end
 
   # This should return the minimal set of attributes required to create a valid
   # Spread. As you add validations to Spread, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    {:name => 'Test spread', :client_id => 1, :date => '2012-07-15'}
   end
   
   # This should return the minimal set of values that should be in the session
@@ -36,17 +43,15 @@ describe SpreadsController do
 
   describe "GET index" do
     it "assigns all spreads as @spreads" do
-      spread = Spread.create! valid_attributes
       get :index, {}, valid_session
-      assigns(:spreads).should eq([spread])
+      assigns(:spreads).should eq([@spread])
     end
   end
 
   describe "GET show" do
     it "assigns the requested spread as @spread" do
-      spread = Spread.create! valid_attributes
-      get :show, {:id => spread.to_param}, valid_session
-      assigns(:spread).should eq(spread)
+      get :show, {:id => @spread.to_param}, valid_session
+      assigns(:spread).should eq(@spread)
     end
   end
 
@@ -59,9 +64,8 @@ describe SpreadsController do
 
   describe "GET edit" do
     it "assigns the requested spread as @spread" do
-      spread = Spread.create! valid_attributes
-      get :edit, {:id => spread.to_param}, valid_session
-      assigns(:spread).should eq(spread)
+      get :edit, {:id => @spread.to_param}, valid_session
+      assigns(:spread).should eq(@spread)
     end
   end
 

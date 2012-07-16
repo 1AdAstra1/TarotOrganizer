@@ -21,7 +21,6 @@ Given /the following spreads exist/ do |spreads_table|
   # you should arrange to add that client to the database here.
     name = item.delete('client_name')
     new_item = Spread.create(item)
-    puts Client.all.inspect
     client = Client.find_by_name(name)
     client.spreads.push(new_item)
     client.save
@@ -113,11 +112,11 @@ Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   page.body.rindex(e1).should < page.body.rindex(e2)
 end
 
-Then /I should be redirected to the (edit )?client page for (.*)/ do |edit, client|
+Then /I should be redirected to the (edit )?(\w+) page for (.*)/ do |edit, model, name|
   current_path = URI.parse(current_url).path
   if edit == nil then
-    current_path.should =~ /clients\/\d+$/ and page.should have_xpath('//*', :text => client)
+    current_path.should =~ /#{model}s\/\d+$/ and page.should have_xpath('//*', :text => name)
   else
-    current_path.should =~ /clients\/\d+\/edit$/ and page.should have_xpath('//*', :text => client)
+    current_path.should =~ /#{model}s\/\d+\/edit$/ and page.should have_xpath('//*', :text => name)
   end
 end

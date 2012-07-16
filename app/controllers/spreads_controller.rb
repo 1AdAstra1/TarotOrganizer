@@ -25,7 +25,7 @@ class SpreadsController < ApplicationController
   # GET /spreads/new.json
   def new
     @spread = Spread.new
-
+    @all_clients = Client.all.collect {|item| [item.name, item.id]}
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @spread }
@@ -35,13 +35,14 @@ class SpreadsController < ApplicationController
   # GET /spreads/1/edit
   def edit
     @spread = Spread.find(params[:id])
+    @all_clients = Client.all.collect {|item| [item.name, item.id]}
   end
 
   # POST /spreads
   # POST /spreads.json
   def create
     @spread = Spread.new(params[:spread])
-
+    @spread.client = Client.find_by_id(params[:spread][:client_id])
     respond_to do |format|
       if @spread.save
         format.html { redirect_to @spread, notice: 'Spread was successfully created.' }
@@ -57,7 +58,7 @@ class SpreadsController < ApplicationController
   # PUT /spreads/1.json
   def update
     @spread = Spread.find(params[:id])
-
+    @spread.client = Client.find_by_id(params[:spread][:client_id])
     respond_to do |format|
       if @spread.update_attributes(params[:spread])
         format.html { redirect_to @spread, notice: 'Spread was successfully updated.' }

@@ -252,16 +252,27 @@ ru:
     pm: вечера
   
   client_atts: &client_atts
-      name: "Имя клиента"
-      comment: "Комментарий"
-      start_date: "Дата начала работы с клиентом"
+    name: "Имя клиента"
+    comment: "Комментарий"
+    start_date: "Дата начала работы с клиентом"
+      
+  spread_atts: &spread_atts
+    name: "Название расклада"
+    client_id: "Клиент"
+    date: "Дата расклада"
+    structure: "Содержание"
+    comment: "Комментарий"
+    feedback: "Обратная связь"
       
   models: &models
     client: "Клиент"
+    spread: "Расклад"
     
   attributes: &attributes
     client:
       <<: *client_atts
+    spread:
+      <<: *spread_atts
   
   # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
@@ -283,3 +294,5 @@ ru:
     label:
       client:
         <<: *client_atts
+      spread:
+        <<: *spread_atts

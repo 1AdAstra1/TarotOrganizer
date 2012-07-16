@@ -54,8 +54,12 @@ describe Client do
     end
     
     it 'should give error on non-existing methods or fields' do
-      Client.nonexistent_method.should raise_error
-      @items[:multiline].print_nofield.should raise_error
+      expect {
+        Client.nonexistent_method
+      }.to raise_error(NoMethodError)      
+      expect {
+        @items[:multiline].print_nofield
+      }.to raise_error(NoMethodError)
     end
   end
 end
