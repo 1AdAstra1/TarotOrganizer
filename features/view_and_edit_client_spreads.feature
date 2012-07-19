@@ -13,9 +13,9 @@ Background: clients have been added to database
 
   And the following spreads exist:
   | name			| client_name	| structure		| date 			| comment		| feedback		|
-  | test spread 	| John Doe		| {aa:'bb'} 	| 2012-01-05	| this is a test| none			|	
-  | test spread 2	| John Doe		| {aa:'cc'} 	| 2012-01-06	| this is a test| 				|
-  | very magical	| Harry Potter	| {aa:'666'} 	| 2012-07-03	| hocus pocus	| very good!	|		
+  | test spread 	| John Doe		| {"aa":"bb"} 	| 2012-01-05	| this is a test| none			|	
+  | test spread 2	| John Doe		| {"aa":"cc"} 	| 2012-01-06	| this is a test| 				|
+  | very magical	| Harry Potter	| {"aa":"666"} 	| 2012-07-03	| hocus pocus	| very good!	|		
 		
 Scenario: show the list of clients
   When I view John Doe's profile

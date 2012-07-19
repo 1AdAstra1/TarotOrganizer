@@ -21,17 +21,15 @@ require 'spec_helper'
 describe SpreadsController do
   
   before :each do
-    client = Client.create({:name => 'test', :comment => 'test', :start_date => '2010-11-21'})
-    @spread = Spread.create valid_attributes
-    @spread.client = client
-    @spread.save!
+    @client = Client.create!({:name => 'test', :comment => 'test', :start_date => '2010-11-21'})
+    @spread = Spread.create! valid_attributes
   end
 
   # This should return the minimal set of attributes required to create a valid
   # Spread. As you add validations to Spread, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {:name => 'Test spread', :client_id => 1, :date => '2012-07-15'}
+    {:name => 'Test spread', :client_id => @client.id, :structure => '{"aaaa": 25}', :date => '2012-07-15'}
   end
   
   # This should return the minimal set of values that should be in the session

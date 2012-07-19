@@ -37,7 +37,6 @@ class SpreadsController < ApplicationController
   def edit
     @spread = Spread.find(params[:id])
     @all_clients = Client.all.collect {|item| [item.name, item.id]}
-    puts params.inspect
   end
 
   # POST /spreads
@@ -45,6 +44,7 @@ class SpreadsController < ApplicationController
   def create
     @spread = Spread.new(params[:spread])
     @spread.client = Client.find_by_id(params[:spread][:client_id])
+    @all_clients = Client.all.collect {|item| [item.name, item.id]}
     respond_to do |format|
       if @spread.save
         format.html { redirect_to @spread, notice: 'Spread was successfully created.' }

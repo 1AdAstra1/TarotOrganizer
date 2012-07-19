@@ -23,27 +23,27 @@
       <img src="./assets/0.5.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2012-07-16T13:18:08-07:00">2012-07-16T13:18:08-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2012-07-19T12:54:02-07:00">2012-07-19T12:54:02-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="green">100.0%</span></span>
+    (<span class="covered_percent"><span class="green">97.7%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         8.07
+         16.69
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
-    <b>9</b> files in total.
-    <b>141</b> relevant lines. 
-    <span class="green"><b>141</b> lines covered</span> and
-    <span class="red"><b>0</b> lines missed </span>
+    <b>11</b> files in total.
+    <b>174</b> relevant lines. 
+    <span class="green"><b>170</b> lines covered</span> and
+    <span class="red"><b>4</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -142,11 +142,31 @@
       <tr>
         <td class="strong"><a href="#a58d3dbb975ae779b2d5d455fa9930451f5f6106" class="src_link" title="lib/validators/client_validator.rb">lib/validators/client_validator.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>22</td>
-        <td>12</td>
-        <td>12</td>
+        <td>7</td>
+        <td>5</td>
+        <td>5</td>
         <td>0</td>
-        <td>40.4</td>
+        <td>43.2</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#02b45b8a5f4bb592ba612c77855425b7d4dc7edf" class="src_link" title="lib/validators/entity_validations.rb">lib/validators/entity_validations.rb</a></td>
+        <td class="yellow strong">84.0 %</td>
+        <td>48</td>
+        <td>25</td>
+        <td>21</td>
+        <td>4</td>
+        <td>66.2</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#8f0254175b1d3732a7f415e0820c81859e80bd07" class="src_link" title="lib/validators/spread_validator.rb">lib/validators/spread_validator.rb</a></td>
+        <td class="green strong">100.0 %</td>
+        <td>25</td>
+        <td>15</td>
+        <td>15</td>
+        <td>0</td>
+        <td>42.0</td>
       </tr>
       
     </tbody>
@@ -386,20 +406,20 @@
           <div class="file_list_container" id="Libraries">
   <h2>
     <span class="group_name">Libraries</span>
-    (<span class="covered_percent"><span class="green">100.0%</span></span>
+    (<span class="covered_percent"><span class="green">91.11%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         40.4
+         50.47
        </span>
     </span> hits/line)
   </h2>
   <a name="Libraries"></a>
   <div>
-    <b>1</b> files in total.
-    <b>12</b> relevant lines. 
-    <span class="green"><b>12</b> lines covered</span> and
-    <span class="red"><b>0</b> lines missed </span>
+    <b>3</b> files in total.
+    <b>45</b> relevant lines. 
+    <span class="green"><b>41</b> lines covered</span> and
+    <span class="red"><b>4</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -418,11 +438,31 @@
       <tr>
         <td class="strong"><a href="#a58d3dbb975ae779b2d5d455fa9930451f5f6106" class="src_link" title="lib/validators/client_validator.rb">lib/validators/client_validator.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>22</td>
-        <td>12</td>
-        <td>12</td>
+        <td>7</td>
+        <td>5</td>
+        <td>5</td>
         <td>0</td>
-        <td>40.4</td>
+        <td>43.2</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#02b45b8a5f4bb592ba612c77855425b7d4dc7edf" class="src_link" title="lib/validators/entity_validations.rb">lib/validators/entity_validations.rb</a></td>
+        <td class="yellow strong">84.0 %</td>
+        <td>48</td>
+        <td>25</td>
+        <td>21</td>
+        <td>4</td>
+        <td>66.2</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#8f0254175b1d3732a7f415e0820c81859e80bd07" class="src_link" title="lib/validators/spread_validator.rb">lib/validators/spread_validator.rb</a></td>
+        <td class="green strong">100.0 %</td>
+        <td>25</td>
+        <td>15</td>
+        <td>15</td>
+        <td>0</td>
+        <td>42.0</td>
       </tr>
       
     </tbody>
@@ -2072,7 +2112,7 @@
         <li class="covered" data-hits="2" data-linenumber="3">
           <span class="hits">2</span>
           
-          <code class="ruby">  attr_protected :client_id</code>
+          <code class="ruby">  validates_with SpreadValidator</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="4">
@@ -2090,8 +2130,8 @@
     <h3>lib/validators/client_validator.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>12</b> relevant lines. 
-      <span class="green"><b>12</b> lines covered</span> and
+      <b>5</b> relevant lines. 
+      <span class="green"><b>5</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -2108,124 +2148,508 @@
         <li class="covered" data-hits="2" data-linenumber="2">
           <span class="hits">2</span>
           
+          <code class="ruby">  include EntityValidations</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="3">
+          <span class="hits">2</span>
+          
           <code class="ruby">  def validate(record)</code>
         </li>
       
-        <li class="covered" data-hits="95" data-linenumber="3">
-          <span class="hits">95</span>
+        <li class="covered" data-hits="105" data-linenumber="4">
+          <span class="hits">105</span>
           
           <code class="ruby">    validate_name(record)</code>
         </li>
       
-        <li class="covered" data-hits="95" data-linenumber="4">
-          <span class="hits">95</span>
+        <li class="covered" data-hits="105" data-linenumber="5">
+          <span class="hits">105</span>
           
-          <code class="ruby">    validate_start_date(record)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="5">
-          
-          
-          <code class="ruby">  end</code>
+          <code class="ruby">    date_past(record, :start_date)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="6">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">  end</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="7">
+        <li class="never" data-hits="" data-linenumber="7">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+        <div class="source_table" id="02b45b8a5f4bb592ba612c77855425b7d4dc7edf">
+  <div class="header">
+    <h3>lib/validators/entity_validations.rb</h3>
+    <h4><span class="yellow">84.0 %</span> covered</h4>
+    <div>
+      <b>25</b> relevant lines. 
+      <span class="green"><b>21</b> lines covered</span> and
+      <span class="red"><b>4</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="2" data-linenumber="1">
+          <span class="hits">2</span>
+          
+          <code class="ruby">module EntityValidations</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="2">
+          
+          
+          <code class="ruby">  </code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="3">
           <span class="hits">2</span>
           
           <code class="ruby">  def validate_name(record)</code>
         </li>
       
-        <li class="covered" data-hits="95" data-linenumber="8">
-          <span class="hits">95</span>
+        <li class="covered" data-hits="161" data-linenumber="4">
+          <span class="hits">161</span>
           
           <code class="ruby">    if record.name.empty? then</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="9">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="3" data-linenumber="5">
+          <span class="hits">3</span>
           
           <code class="ruby">      record.errors.add(:name, :blank)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="10">
+        <li class="never" data-hits="" data-linenumber="6">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="11">
+        <li class="never" data-hits="" data-linenumber="7">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="12">
+        <li class="never" data-hits="" data-linenumber="8">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">  </code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="13">
+        <li class="covered" data-hits="2" data-linenumber="9">
           <span class="hits">2</span>
           
-          <code class="ruby">  def validate_start_date(record)</code>
+          <code class="ruby">  def validate_date(record, date_field, future = false)</code>
         </li>
       
-        <li class="covered" data-hits="95" data-linenumber="14">
-          <span class="hits">95</span>
+        <li class="covered" data-hits="161" data-linenumber="10">
+          <span class="hits">161</span>
           
-          <code class="ruby">    if record.start_date == nil then</code>
+          <code class="ruby">    date = record.send(date_field)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="15">
+        <li class="covered" data-hits="161" data-linenumber="11">
+          <span class="hits">161</span>
+          
+          <code class="ruby">    if date == nil then</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="12">
           <span class="hits">1</span>
           
-          <code class="ruby">      record.errors.add(:start_date, :blank)</code>
+          <code class="ruby">      record.errors.add(date_field, :blank)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="16">
+        <li class="never" data-hits="" data-linenumber="13">
           
           
           <code class="ruby">    else</code>
         </li>
       
-        <li class="covered" data-hits="94" data-linenumber="17">
-          <span class="hits">94</span>
+        <li class="covered" data-hits="160" data-linenumber="14">
+          <span class="hits">160</span>
           
-          <code class="ruby">      if record.start_date &gt; Date.today then</code>
+          <code class="ruby">      if future == false</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="18">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="160" data-linenumber="15">
+          <span class="hits">160</span>
           
-          <code class="ruby">        record.errors.add(:start_date, :future_date)</code>
+          <code class="ruby">        if date &gt; Date.today then</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="19">
+        <li class="covered" data-hits="3" data-linenumber="16">
+          <span class="hits">3</span>
           
-          
-          <code class="ruby">      end</code>
+          <code class="ruby">          record.errors.add(date_field, :future_date)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="20">
+        <li class="never" data-hits="" data-linenumber="17">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">        end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="18">
+          
+          
+          <code class="ruby">      else</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="19">
+          
+          
+          <code class="ruby">        if date &lt; Date.today then</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="20">
+          
+          
+          <code class="ruby">          record.errors.add(date_field, :past_date)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="21">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">        end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="22">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="23">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="24">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="25">
+          
+          
+          <code class="ruby">  </code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="26">
+          <span class="hits">2</span>
+          
+          <code class="ruby">  def validate_existence(record, nested_resource)</code>
+        </li>
+      
+        <li class="covered" data-hits="56" data-linenumber="27">
+          <span class="hits">56</span>
+          
+          <code class="ruby">    if record.send(nested_resource) == nil</code>
+        </li>
+      
+        <li class="covered" data-hits="11" data-linenumber="28">
+          <span class="hits">11</span>
+          
+          <code class="ruby">      id_property = (nested_resource.to_s + '_id').to_sym</code>
+        </li>
+      
+        <li class="covered" data-hits="11" data-linenumber="29">
+          <span class="hits">11</span>
+          
+          <code class="ruby">      record.errors.add(id_property, :nonexistent)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="30">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="31">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="32">
+          
+          
+          <code class="ruby">  </code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="33">
+          <span class="hits">2</span>
+          
+          <code class="ruby">  def method_missing(method_name, *args)</code>
+        </li>
+      
+        <li class="covered" data-hits="217" data-linenumber="34">
+          <span class="hits">217</span>
+          
+          <code class="ruby">    case method_name</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="35">
+          
+          
+          <code class="ruby">    when /^date_(past|future|)/ then</code>
+        </li>
+      
+        <li class="covered" data-hits="161" data-linenumber="36">
+          <span class="hits">161</span>
+          
+          <code class="ruby">      if $1 == 'past' then</code>
+        </li>
+      
+        <li class="covered" data-hits="161" data-linenumber="37">
+          <span class="hits">161</span>
+          
+          <code class="ruby">        future = false</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="38">
+          
+          
+          <code class="ruby">      else</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="39">
+          
+          
+          <code class="ruby">        future = true</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="40">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="covered" data-hits="161" data-linenumber="41">
+          <span class="hits">161</span>
+          
+          <code class="ruby">      validate_date args[0], args[1], future</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="42">
+          
+          
+          <code class="ruby">    when /^([a-z_]+)_exists/ then</code>
+        </li>
+      
+        <li class="covered" data-hits="56" data-linenumber="43">
+          <span class="hits">56</span>
+          
+          <code class="ruby">      validate_existence(args[0], $1.to_sym)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="44">
+          
+          
+          <code class="ruby">    else</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="45">
+          
+          
+          <code class="ruby">      super</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="46">
+          
+          
+          <code class="ruby">    end    </code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="47">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="48">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+        <div class="source_table" id="8f0254175b1d3732a7f415e0820c81859e80bd07">
+  <div class="header">
+    <h3>lib/validators/spread_validator.rb</h3>
+    <h4><span class="green">100.0 %</span> covered</h4>
+    <div>
+      <b>15</b> relevant lines. 
+      <span class="green"><b>15</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="2" data-linenumber="1">
+          <span class="hits">2</span>
+          
+          <code class="ruby">class SpreadValidator &lt; ActiveModel::Validator</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="2">
+          <span class="hits">2</span>
+          
+          <code class="ruby">  include EntityValidations</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="3">
+          <span class="hits">2</span>
+          
+          <code class="ruby">  require 'json'</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="4">
+          <span class="hits">2</span>
+          
+          <code class="ruby">  def validate(record)</code>
+        </li>
+      
+        <li class="covered" data-hits="56" data-linenumber="5">
+          <span class="hits">56</span>
+          
+          <code class="ruby">    validate_name(record)</code>
+        </li>
+      
+        <li class="covered" data-hits="56" data-linenumber="6">
+          <span class="hits">56</span>
+          
+          <code class="ruby">    date_past(record, :date)</code>
+        </li>
+      
+        <li class="covered" data-hits="56" data-linenumber="7">
+          <span class="hits">56</span>
+          
+          <code class="ruby">    client_exists(record)</code>
+        </li>
+      
+        <li class="covered" data-hits="56" data-linenumber="8">
+          <span class="hits">56</span>
+          
+          <code class="ruby">    structure_json(record)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="9">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="10">
+          
+          
+          <code class="ruby">  </code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="11">
+          <span class="hits">2</span>
+          
+          <code class="ruby">  def validate_json(record, field)</code>
+        </li>
+      
+        <li class="covered" data-hits="56" data-linenumber="12">
+          <span class="hits">56</span>
+          
+          <code class="ruby">    parse_result = JSON.parse(record.send(field))</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="13">
+          
+          
+          <code class="ruby">  rescue JSON::ParserError</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="14">
+          <span class="hits">2</span>
+          
+          <code class="ruby">    record.errors.add(field, :bad_format)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="15">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="16">
+          
+          
+          <code class="ruby">  </code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="17">
+          <span class="hits">2</span>
+          
+          <code class="ruby">  def method_missing(method_name, *args)</code>
+        </li>
+      
+        <li class="covered" data-hits="168" data-linenumber="18">
+          <span class="hits">168</span>
+          
+          <code class="ruby">    case method_name</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="19">
+          
+          
+          <code class="ruby">    when /^([a-z_]+)_json/ then</code>
+        </li>
+      
+        <li class="covered" data-hits="56" data-linenumber="20">
+          <span class="hits">56</span>
+          
+          <code class="ruby">      validate_json(args[0], $1.to_sym)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="21">
+          
+          
+          <code class="ruby">    else</code>
+        </li>
+      
+        <li class="covered" data-hits="112" data-linenumber="22">
+          <span class="hits">112</span>
+          
+          <code class="ruby">      super</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="23">
+          
+          
+          <code class="ruby">    end   </code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="24">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="25">
           
           
           <code class="ruby">end</code>
