@@ -24,27 +24,28 @@ var Editor = function (containerId) {
 Editor.prototype.addEvents = function() {
     //Make the field resizable
     this.field.resizable({
-	resize: $.proxy(function(event, ui) {
-	    this.updateSizeForm();
-	}, this)
+		resize: $.proxy(function(event, ui) {
+		    this.updateSizeForm();
+		}, this)
     });
     
-    this.buttons.newSpread.click($.proxy(function () {
-	if(this.spread.hasPositions()) {
-	    this.confirm('Очистка уничтожит все ранее введённые данные. Вы уверены?', this.createSpread, this);
-	} else {
-	    this.createSpread();
-	}
+    this.buttons.newSpread.click($.proxy(function (e) {
+    	e.preventDefault();
+		if(this.spread.hasPositions()) {
+		    this.confirm('Очистка уничтожит все ранее введённые данные. Вы уверены?', this.createSpread, this);
+		} else {
+		    this.createSpread();
+		}
     }, this));
    
     this.positionDialog.bind('dialogreload', $.proxy(function() {
-	this.reloadDialog();
+		this.reloadDialog();
     }, this));
     
     this.positionDialog.keyup($.proxy(function(e) {
-	if (e.keyCode == $.ui.keyCode.ENTER) {
-	    this.saveDialog();
-	}
+		if (e.keyCode == $.ui.keyCode.ENTER) {
+		    this.saveDialog();
+		}
     }, this));
 };
 
@@ -53,33 +54,38 @@ Editor.prototype.addEvents = function() {
  */
 Editor.prototype.addSpreadEvents = function() {
     this.buttons.addPosition.unbind('click');
-    this.buttons.addPosition.click($.proxy(function() {
-	this.spread.addPosition();
+    this.buttons.addPosition.click($.proxy(function(e) {
+    	e.preventDefault();
+		this.spread.addPosition();
     }, this));
     
     this.buttons.removeCards.unbind('click');
-    this.buttons.removeCards.click($.proxy(function() {
-	this.removeCards();
+    this.buttons.removeCards.click($.proxy(function(e) {
+    	e.preventDefault();
+		this.removeCards();
     }, this));
     
-    this.buttons.getHTML.click($.proxy(function() {
-	this.showExport();
+    this.buttons.getHTML.click($.proxy(function(e) {
+    	e.preventDefault();
+		this.showExport();
     }, this));
     
-    this.buttons.getImage.click($.proxy(function() {
-	this.form.submit();
+    this.buttons.getImage.click($.proxy(function(e) {
+    	e.preventDefault();
+		this.form.submit();
     }, this));
     
-    this.buttons.positionSize.change($.proxy(function() {
-	this.setPositionSize(this.buttons.positionSize.val());
+    this.buttons.positionSize.change($.proxy(function(e) {
+    	e.preventDefault();
+		this.setPositionSize(this.buttons.positionSize.val());
     }, this));
     
     this.buttons.deck.change($.proxy(function(){
-	this.loadDeck(this.buttons.deck.val());
+		this.loadDeck(this.buttons.deck.val());
     }, this));
     
     this.buttons.grid.change($.proxy(function(){
-	this.setGrid(this.buttons.grid.val());
+		this.setGrid(this.buttons.grid.val());
     }, this));
 };
 
