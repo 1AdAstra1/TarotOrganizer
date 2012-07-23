@@ -15,6 +15,7 @@
     = f.label :date
     = f.date_select :date
   .field
+    %div#editor-container
     = f.label :structure
     = f.text_field :structure
   .field
@@ -26,3 +27,7 @@
   .actions
     = f.submit 'Сохранить расклад'
 = button_to 'Отмена', :back, :method => :get
+:javascript
+  $(document).ready(function () {      
+    var editor = new Editor('#editor-container');
+  });

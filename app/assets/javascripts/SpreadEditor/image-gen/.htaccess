@@ -1,0 +1,7 @@
+RewriteEngine on
+
+RewriteCond %{HTTP_REFERER} !^$
+
+RewriteCond %{HTTP_REFERER} !^http://(www.)?ad-astra.name/.*$ [NC]
+
+RewriteRule \.(php)$ - [F]
