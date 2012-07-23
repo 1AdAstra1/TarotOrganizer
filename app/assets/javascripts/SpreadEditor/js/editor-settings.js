@@ -37,23 +37,23 @@ var EditorSettings = {
     deckDescriptionFile: 'deck.json',
     
     decks : {
-	'rider-waite' : {
-	    'name' : 'Таро Райдера-Уэйта'
-	},
-
-	'thoth' : {
-	    'name' : 'Таро Тота (А. Кроули)'
-	},
+		'rider-waite' : {
+		    'name' : 'Таро Райдера-Уэйта'
+		},
 	
-	'marseille' : {
-	    'name' : 'Марсельское Таро'
-	},
-	
-	'doors-78' : {
-	    'name' : 'Таро 78 дверей'
-	}
+		'thoth' : {
+		    'name' : 'Таро Тота (А. Кроули)'
+		},
+		
+		'marseille' : {
+		    'name' : 'Марсельское Таро'
+		},
+		
+		'doors-78' : {
+		    'name' : 'Таро 78 дверей'
+		}
     },    
     
-    decksPath: 'assets/decks/'
+    decksPath: 'assets/'
 };
 
