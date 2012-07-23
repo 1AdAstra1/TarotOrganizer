@@ -54,6 +54,6 @@ var EditorSettings = {
 		}
     },    
     
-    decksPath: 'assets/'
+    decksPath: '/assets/'
 };
 
