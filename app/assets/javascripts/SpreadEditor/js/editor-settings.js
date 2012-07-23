@@ -4,7 +4,7 @@
 'use strict';
 
 var EditorSettings = {
-    siteURL : 'http://ad-astra.name/SpreadEditor/',
+    siteURL : '',
 
     imageGeneratorPath : 'image-gen/',
    
