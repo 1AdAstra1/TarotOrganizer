@@ -1,4 +1,4 @@
-= form_for @spread do |f|
+= form_for(@spread, :html => { :class => "spread_form"}) do |f|
   -if @spread.errors.any?
     #error_explanation
       %h2= "Следующие ошибки препятствуют сохранению расклада:"
@@ -17,7 +17,7 @@
   .field
     %div#editor-container
     = f.label :structure
-    = f.text_field :structure
+    = f.text_area :structure
   .field
     = f.label :comment
     = f.text_area :comment
@@ -30,4 +30,7 @@
 :javascript
   $(document).ready(function () {      
     var editor = new Editor('#editor-container');
+    $('.spread_form').bind('submit', function() {
+      $('#spread_structure').val(editor.exportJSON());
+    });
   });

@@ -70,11 +70,6 @@ Editor.prototype.addSpreadEvents = function() {
 		this.showExport();
     }, this));
     
-    this.buttons.getImage.click($.proxy(function(e) {
-    	e.preventDefault();
-		this.form.submit();
-    }, this));
-    
     this.buttons.positionSize.change($.proxy(function(e) {
     	e.preventDefault();
 		this.setPositionSize(this.buttons.positionSize.val());
@@ -182,7 +177,6 @@ Editor.prototype.createToolbar = function() {
     this.buttons.removeCards = $('<button id="add_position">Убрать примеры</button>').button().appendTo(this.toolbar);
     this.buttons.newSpread = $('<button id="new_spread">Очистить поле</button>').button().appendTo(this.toolbar);
     this.buttons.getHTML = $('<button id="save_spread">Получить HTML</button>').button().appendTo(this.toolbar);
-    this.buttons.getImage = $('<button id="save_image">Получить картинку</button>').button().appendTo(this.toolbar);
     this.toolbar.append($('<hr />'));
     
     this.toolbar.append($('<label for="position_size">Карты:</label>'));
@@ -315,6 +309,13 @@ Editor.prototype.exportHTML = function() {
     copyrightExport.appendTo(innerWrapper);
     
     return this.postProcessOutput(wrapper.html());
+};
+
+/**
+ * Exports the active spread into JSON
+ */
+Editor.prototype.exportJSON = function() {
+	return JSON.stringify(this.spread.exportObject());
 };
 
 /**

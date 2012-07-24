@@ -57,6 +57,22 @@ Card.prototype.exportNode = function() {
 };
 
 /**
+ * Exports the card to a new JSON object
+ */
+Card.prototype.exportObject = function() {
+	var output = {
+		image: this.getImagePath(),
+		width: this.getWidth(),
+		height: this.getHeight(),
+		reverted: this.isUpsideDown(), 
+		id: this.getId(),
+		name: this.getName(),
+		value: this.getValue()
+	};
+	return output;
+};
+
+/**
  * Getter for the current computed height of the card image
  */
 Card.prototype.getHeight = function() {

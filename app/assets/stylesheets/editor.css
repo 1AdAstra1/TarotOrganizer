@@ -165,6 +165,10 @@ div#buttons {
     width: 736px;
 }
 
+div#buttons label {
+	display: inline;
+}
+
 div#buttons button, div#buttons select {
     margin-right: 5px;
 }
