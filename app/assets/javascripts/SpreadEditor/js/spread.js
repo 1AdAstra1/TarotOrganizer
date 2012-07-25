@@ -4,19 +4,25 @@
 /**
  * Spread object prototype constructor
  */
-var Spread = function(editor) {
+var Spread = function(editor, structure) {
+	var me = this;
 	this.positions = [];
 	this.editor = editor;
 	this.element = this.editor.getElement();
 	this.settings = this.editor.settings;
 	this.defaultPositionSize = this.editor.defaultPositionSize;
 	this.defaultGrid = this.editor.defaultGrid;
+	if(structure) {
+		$.each(structure.positions, function(index, position) {
+			me.addPosition(position);
+		});
+	}
 };
 /**
  * Adds a new position
  */
-Spread.prototype.addPosition = function() {
-	this.positions[this.getLastNumber()] = new Position(this);
+Spread.prototype.addPosition = function(savedPosition) {
+	this.positions[this.getLastNumber()] = new Position(this, savedPosition);
 };
 /**
  * Removes the spread's positions before removing the spread itself

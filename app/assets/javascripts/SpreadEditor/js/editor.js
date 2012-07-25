@@ -6,7 +6,7 @@
 /**
  * Editor object prototype constructor
  */
-var Editor = function (containerId) {
+var Editor = function (containerId, savedStructure) {
     var parent = $(containerId);
     parent.css ({'position' : 'relative'});
     this.container = $('<div id="editor-wrapper"></div>').appendTo(parent);    
@@ -15,7 +15,14 @@ var Editor = function (containerId) {
     this.defaultPositionSize = this.buttons.positionSize.val();
     this.defaultGrid = this.buttons.grid.val();
     this.addEvents();
-    this.createSpread();
+    if(savedStructure) {
+    	savedStructure = JSON.parse(savedStructure);
+    	this.field.css({
+    		width: savedStructure.width,
+    		height: savedStructure.height
+    	});
+    }
+    this.createSpread(savedStructure);
 };
 
 /**
@@ -228,14 +235,15 @@ Editor.prototype.createWidgets = function() {
  * Removes the old spread from the editor and adds a new one,
  * also assigning the buttons to work with the new spread
  */
-Editor.prototype.createSpread = function() {
+Editor.prototype.createSpread = function(savedStructure) {
     if( this.spread ) {
-	this.exportContainer.css({
-	    'display': 'none'
-	});
-	this.spread.remove();
+		this.exportContainer.css({
+		    'display': 'none'
+		});
+		this.spread.remove();
     }
-    this.spread = new Spread(this);
+
+    this.spread = new Spread(this, savedStructure);
 
     this.addSpreadEvents();
 };

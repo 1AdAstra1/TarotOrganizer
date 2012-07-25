@@ -5,7 +5,7 @@
 /**
  * Position object prototype constructor
  */
-var Position = function(spread) {
+var Position = function(spread, savedPosition) {
 	//set the default values
 	this.card = null;
 	this.spread = spread;
@@ -36,6 +36,13 @@ var Position = function(spread) {
 
 	this.gridSizes = EditorSettings.gridSizes;
 	this.setGrid(this.spread.getGrid());
+	if(savedPosition) {
+		this.setDescription(savedPosition.description);
+		this.box.css({
+			top: savedPosition.top,
+			left: savedPosition.left
+		});
+	}
 };
 /**
  * Adds a handler for the click event

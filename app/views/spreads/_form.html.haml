@@ -29,7 +29,7 @@
 = button_to 'Отмена', :back, :method => :get
 :javascript
   $(document).ready(function () {      
-    var editor = new Editor('#editor-container');
+    var editor = new Editor('#editor-container', $('#spread_structure').val());
     $('.spread_form').bind('submit', function() {
       $('#spread_structure').val(editor.exportJSON());
     });
