@@ -28,7 +28,7 @@ var Card = function(deck, id, value, imageContainer, valueContainer) {
 Card.prototype.displayDescription = function() {
     var upsideDownText = '';
     if(this.isUpsideDown() === true) {
-	upsideDownText = ' (перевёрнутая)';
+		upsideDownText = ' (перевёрнутая)';
     }
     this.valueContainer.html(' - <strong>' + this.cardName + upsideDownText + ':</strong> ' + this.value);
 };

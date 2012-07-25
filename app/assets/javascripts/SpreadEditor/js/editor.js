@@ -16,13 +16,12 @@ var Editor = function (containerId, savedStructure) {
     this.defaultGrid = this.buttons.grid.val();
     this.addEvents();
     if(savedStructure) {
-    	savedStructure = JSON.parse(savedStructure);
+    	this.savedStructure = JSON.parse(savedStructure);
     	this.field.css({
     		width: savedStructure.width,
     		height: savedStructure.height
     	});
     }
-    this.createSpread(savedStructure);
 };
 
 /**
@@ -30,11 +29,7 @@ var Editor = function (containerId, savedStructure) {
  */
 Editor.prototype.addEvents = function() {
     //Make the field resizable
-    this.field.resizable({
-		resize: $.proxy(function(event, ui) {
-		    this.updateSizeForm();
-		}, this)
-    });
+    this.field.resizable();
     
     this.buttons.newSpread.click($.proxy(function (e) {
     	e.preventDefault();
@@ -164,14 +159,6 @@ Editor.prototype.createDialog = function() {
     });
 };
 
-/**
- * Form (external API) initialization
- */
-Editor.prototype.createForm = function() {
-    this.form = $('<form id="spread-form" action="' + EditorSettings.imageGeneratorPath + '" method="post" target="_blank"></form>').appendTo(this.container);
-    this.form.append('<input type="hidden" id="image_width" name = "image_width" value = "' + this.field.width() + '" />');
-    this.form.append('<input type="hidden" id="image_height" name = "image_height" value = "' + this.field.height() + '" />');
-};
 
 /**
  * Toolbar with all its controls
@@ -196,8 +183,9 @@ Editor.prototype.createToolbar = function() {
     this.toolbar.append($('<label for="deck">Колода:</label>'));
     this.buttons.deck = $('<select id="deck"></select>').appendTo(this.toolbar);
     $.each(this.settings.decks, $.proxy(function(id, params){
-	$('<option value="' + id + '">' + params.name + '</option>').appendTo(this.buttons.deck);
+		$('<option value="' + id + '">' + params.name + '</option>').appendTo(this.buttons.deck);
     }, this)); 
+    this.activeDeck = this.buttons.deck.val();
     
     this.toolbar.append($('<label for="grid">Сетка:</label>'));
     this.buttons.grid = $('<select id="grid"></select>').appendTo(this.toolbar);
@@ -214,16 +202,13 @@ Editor.prototype.createToolbar = function() {
  */
 Editor.prototype.createWidgets = function() {
     this.createToolbar();
-    
-    this.activeDeck = this.loadDeck(this.buttons.deck.val());
+    this.loadDeck(this.buttons.deck.val());
     //DOM element that contains the resizable editor field
     this.field = $('<div id="editor-area"></div>').appendTo(this.container);
     //DOM element that contains the list of positions with their descriptions
     var descriptionsContainer = $('<div id="descriptions-area"></div>');
     this.descriptionsList = $('<ol></ol>').appendTo(descriptionsContainer);
     descriptionsContainer.appendTo(this.container);
-    
-    this.createForm();    
     
     this.exportContainer = $('<div id="export-area"><textarea id="export"></textarea></div>').appendTo(this.container);
     
@@ -264,13 +249,6 @@ Editor.prototype.getDescriptionsList = function() {
 };
 
 /**
- * Getter for the formElement property
- */
-Editor.prototype.getForm = function() {
-    return this.form;
-};
-
-/**
  * Getter for the element property
  */
 Editor.prototype.getElement = function() {
@@ -289,16 +267,6 @@ Editor.prototype.getPositionSize = function() {
  */
 Editor.prototype.getPropertiesDialog = function() {
     return this.positionDialog;
-};
-
-/**
- * Tests if this editor instance uses a form
- */
-Editor.prototype.hasForm = function() {
-    if(this.form) {
-	return true;
-    }
-    return false;
 };
 
 /**
@@ -332,16 +300,19 @@ Editor.prototype.exportJSON = function() {
 Editor.prototype.loadDeck = function(deckName) {
     var url = this.settings.decksPath + deckName + "/" + this.settings.deckDescriptionFile;
     if(this.settings.decks[deckName].cards === undefined) {
-	$.getJSON(url, $.proxy(function(data) {
-	    this.settings.decks[deckName].cards = data;
-	    this.activeDeck = deckName; 
-	    this.reloadDeck();
-	}, this)).error(function(jqXHR, textStatus, errorThrown){
-	    console.log(textStatus);
-	})
+		$.getJSON(url, $.proxy(function(data) {
+		    this.settings.decks[deckName].cards = data;
+		    this.activeDeck = deckName; 
+		    this.reloadDeck();
+		    if(!this.spread) {
+		    	this.createSpread(this.savedStructure);
+		    }
+		}, this)).error(function(jqXHR, textStatus, errorThrown){
+		    console.log(textStatus);
+		})
     } else {
-	this.activeDeck = deckName;
-	this.reloadDeck();
+		this.activeDeck = deckName;
+		this.reloadDeck();
     }
 };
 
@@ -453,14 +424,4 @@ Editor.prototype.showExport = function() {
 	'display': 'block'
     });
     this.exportContainer.find('textarea#export').text(this.exportHTML());
-};
-
-/**
- * Updates the values of the editor field's width and height form fields
- */
-Editor.prototype.updateSizeForm = function() {
-    if( this.hasForm() ){
-	this.form.find( $('input#image_width')[0] ).val(this.field.width());
-	this.form.find( $('input#image_height')[0] ).val(this.field.height());
-    }
 };

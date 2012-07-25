@@ -6,6 +6,7 @@
  * Position object prototype constructor
  */
 var Position = function(spread, savedPosition) {
+	var me = this;
 	//set the default values
 	this.card = null;
 	this.spread = spread;
@@ -17,12 +18,6 @@ var Position = function(spread, savedPosition) {
 	this.descriptionElement = $('');
 	//create the DOM nodes
 	this.createElements();
-
-	if(this.editor.hasForm() === true) {
-		this.form = this.spread.getEditor().getForm();
-		this.formElements = {};
-		this.setForm();
-	}
 
 	//add events
 	this.addDrag();
@@ -39,9 +34,13 @@ var Position = function(spread, savedPosition) {
 	if(savedPosition) {
 		this.setDescription(savedPosition.description);
 		this.box.css({
-			top: savedPosition.top,
-			left: savedPosition.left
+			top : savedPosition.top,
+			left : savedPosition.left
 		});
+		if(savedPosition.card) {
+			this.card = new Card(me.editor.getActiveDeck(), savedPosition.card.id, savedPosition.card.value, this.cardElement, this.valueElement);
+			if(savedPosition.card.reverted === true) this.card.setUpsideDown();
+		}
 	}
 };
 /**
@@ -69,9 +68,6 @@ Position.prototype.addDblClick = function() {
 Position.prototype.addDrag = function() {
 	this.box.draggable({
 		containment : this.spread.getElement(),
-		drag : $.proxy(function(event, ui) {
-			this.updatePositionForm();
-		}, this),
 		scroll : false
 	});
 };
@@ -148,8 +144,7 @@ Position.prototype.exportNode = function() {
  * Exports the position to a new JSON object
  */
 Position.prototype.exportObject = function() {
-	var me = this,
-	output = {
+	var me = this, output = {
 		width : this.box.css('width'),
 		height : this.box.css('height'),
 		position : this.box.css('position'),
@@ -162,9 +157,10 @@ Position.prototype.exportObject = function() {
 		number : {
 			value : this.number + 1,
 			mode : (function() {
-				if(me.box.hasClass('vertical')) return 'vertical';
+				if(me.box.hasClass('vertical'))
+					return 'vertical';
 				return 'horizontal';
-			})(),			
+			})(),
 			textAlign : this.numberElement.css('text-align'),
 			position : this.numberElement.css('position'),
 			top : this.numberElement.css('top'),
@@ -172,7 +168,7 @@ Position.prototype.exportObject = function() {
 			marginLeft : this.numberElement.css('margin-left'),
 			marginRight : this.numberElement.css('margin-right')
 		},
-		description: this.getDescription()
+		description : this.getDescription()
 	};
 
 	if(this.card) {
@@ -180,7 +176,7 @@ Position.prototype.exportObject = function() {
 		output.card.marginTop = this.cardElement.css('margin-top');
 		output.card.marginBottom = this.cardElement.css('margin-bottom');
 	}
-	
+
 	return output;
 };
 /**
@@ -219,7 +215,6 @@ Position.prototype.remove = function() {
 	}
 	this.box.remove();
 	this.listItem.remove();
-	this.removeForm();
 };
 /**
  * Removes the card and everything that depends on it
@@ -227,18 +222,8 @@ Position.prototype.remove = function() {
 Position.prototype.removeCard = function() {
 	if(this.card) {
 		this.card.remove();
-		this.formElements.cardPath.remove();
-		this.formElements.cardHeight.remove();
 		delete this.card;
 	}
-};
-/**
- * Removes the position's form fields
- */
-Position.prototype.removeForm = function() {
-	$.each(this.formElements, function(index, element) {
-		element.remove();
-	});
 };
 /**
  * Rotates the element, 90 degrees
@@ -246,14 +231,9 @@ Position.prototype.removeForm = function() {
 Position.prototype.rotate = function() {
 	if(this.box.hasClass('vertical')) {
 		this.box.switchClass('vertical', 'horizontal', 500);
-		this.formElements.textPosition.val('horizontal');
 	} else {
 		this.box.switchClass('horizontal', 'vertical', 500);
-		this.formElements.textPosition.val('vertical');
 	}
-	setTimeout($.proxy(function() {
-		this.setSizeForm();
-	}, this), 500);
 };
 /**
  * Sets the position's image and value according to the deck chosen
@@ -261,7 +241,6 @@ Position.prototype.rotate = function() {
 Position.prototype.setDeck = function(deck) {
 	if(this.card) {
 		this.card.setDeck(deck);
-		this.formElements.cardPath.val(this.card.getImagePath());
 	}
 };
 /**
@@ -278,16 +257,6 @@ Position.prototype.setDescription = function(description) {
 Position.prototype.setNumber = function(number) {
 	this.number = parseInt(number, 10);
 	this.numberElement.text(this.number + 1);
-	this.removeForm();
-	this.setForm();
-};
-/**
- * Sets up the form fields for the card, if needed
- */
-Position.prototype.setCardForm = function() {
-	this.formElements.cardPath = $('<input type = "hidden" name = "positions[' + this.number + '][card_path]" id = "position-' + this.number + '-card-path" value="' + this.card.getImagePath() + '"/>').appendTo(this.form);
-	this.formElements.cardHeight = $('<input type = "hidden" name = "positions[' + this.number + '][card_height]" id = "position-' + this.number + '-card-height" value="' + this.card.getHeight() + '"/>').appendTo(this.form);
-	this.formElements.cardReverted = $('<input type = "hidden" name = "positions[' + this.number + '][card_reverted]" id = "position-' + this.number + '-card-reverted" value="' + this.card.isUpsideDown() + '"/>').appendTo(this.form);
 };
 /**
  * Restricts position movement to grid provided
@@ -301,27 +270,11 @@ Position.prototype.setGrid = function(gridName) {
 			'left' : currentLeft - (currentLeft % currentGrid.width)
 		});
 
-		this.updatePositionForm();
 		this.box.draggable("option", "grid", [currentGrid.width, currentGrid.height]);
 	} else {
 		this.box.draggable("option", "grid", false);
 	}
 }
-/**
- * Sets up the form fields for the position, if needed
- */
-Position.prototype.setForm = function() {
-	this.formElements.number = $('<input type = "hidden" name = "positions[' + this.number + '][number]" id = "position-' + this.number + '-number" value="' + this.number + '"/>');
-	this.formElements.top = $('<input type = "hidden" name = "positions[' + this.number + '][top]" id = "position-' + this.number + '-top" value="' + parseInt(this.box.css('top'), 10) + '"/>');
-	this.formElements.left = $('<input type = "hidden" name = "positions[' + this.number + '][left]" id = "position-' + this.number + '-left" value="' + parseInt(this.box.css('left'), 10) + '"/>');
-	this.formElements.width = $('<input type = "hidden" name = "positions[' + this.number + '][width]" id = "position-' + this.number + '-width" value="' + this.box.width() + '"/>');
-	this.formElements.height = $('<input type = "hidden" name = "positions[' + this.number + '][height]" id = "position-' + this.number + '-height" value="' + this.box.height() + '"/>');
-	this.formElements.textPosition = $('<input type = "hidden" name = "positions[' + this.number + '][text_position]" id = "position-' + this.number + '-text-position" value="vertical"/>');
-
-	$.each(this.formElements, $.proxy(function(index, element) {
-		element.appendTo(this.form);
-	}, this));
-};
 /**
  * Resizes the position box by assigning pre-defines size classes to it
  */
@@ -332,19 +285,6 @@ Position.prototype.setSize = function(sizeName) {
 			this.box.removeClass("size-" + name);
 		}, this));
 		this.box.addClass(sizeClassName);
-	}
-	this.setSizeForm();
-};
-/**
- * Assigns the width, height and card height values to the form inputs
- */
-Position.prototype.setSizeForm = function() {
-	if(this.formElements) {
-		this.formElements.width.val(this.box.width());
-		this.formElements.height.val(this.box.height());
-		if(this.card) {
-			this.formElements.cardHeight.val(this.card.getHeight());
-		}
 	}
 };
 /**
@@ -363,10 +303,8 @@ Position.prototype.updateParams = function(params) {
 	if(params.hasOwnProperty('cardId') && params.cardId !== '') {
 		if(!this.card) {
 			this.card = new Card(this.editor.getActiveDeck(), params.cardId, params.cardDescription, this.cardElement, this.valueElement);
-			this.setCardForm();
 		} else {
 			this.card.setId(params.cardId);
-			this.formElements.cardPath.val(this.card.getImagePath());
 			this.card.setValue(params.cardDescription);
 		}
 		if(params.upsideDown === true) {
@@ -374,17 +312,7 @@ Position.prototype.updateParams = function(params) {
 		} else {
 			this.card.setStraight();
 		}
-		this.formElements.cardReverted.val(this.card.isUpsideDown());
 	} else {
 		this.removeCard();
-	}
-};
-/**
- * Updates the form values upon dragging or snapping to grid
- */
-Position.prototype.updatePositionForm = function() {
-	if(this.formElements) {
-		this.formElements.top.val(parseInt(this.box.css('top'), 10));
-		this.formElements.left.val(parseInt(this.box.css('left'), 10));
 	}
 };
