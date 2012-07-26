@@ -18,10 +18,16 @@ var Editor = function (containerId, savedStructure) {
     if(savedStructure) {
     	this.savedStructure = JSON.parse(savedStructure);
     	this.field.css({
-    		width: savedStructure.width,
-    		height: savedStructure.height
+    		width: this.savedStructure.width,
+    		height: this.savedStructure.height
     	});
+    	this.activeDeck = this.savedStructure.deck;
+    	this.buttons.deck.val(this.activeDeck);
+    	this.defaultPositionSize = this.savedStructure.size;
+    	this.buttons.positionSize.val(this.defaultPositionSize);
     }
+    console.log(this.savedStructure.deck);
+    this.loadDeck(this.activeDeck);
 };
 
 /**
@@ -202,7 +208,6 @@ Editor.prototype.createToolbar = function() {
  */
 Editor.prototype.createWidgets = function() {
     this.createToolbar();
-    this.loadDeck(this.buttons.deck.val());
     //DOM element that contains the resizable editor field
     this.field = $('<div id="editor-area"></div>').appendTo(this.container);
     //DOM element that contains the list of positions with their descriptions

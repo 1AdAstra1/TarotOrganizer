@@ -109,6 +109,8 @@ Spread.prototype.exportObject = function() {
 		height : this.element.css('height'),
 		border : this.element.css('border'),
 		backgroundColor : this.element.css('background-color'),
+		deck: this.editor.getActiveDeck(),
+		size: this.editor.getPositionSize(),
 		positions: []
 	};
 	for(var counter in this.positions) {
