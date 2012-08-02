@@ -10,7 +10,7 @@ class SpreadImage
     @format = 'png'
     @dir = 'spread_images'
     @filename = 'spread_' + @id.to_s + '.' + @format
-    @path = '/' + @dir + '/' + @filename
+    @path = '/assets/' + @dir + '/' + @filename
     @localdir = Rails.root.join('app', 'assets', 'images', @dir).to_s
     @localpath = @localdir + '/' + @filename
   end
