@@ -1,5 +1,11 @@
 require 'simplecov'
+require 'fakefs/spec_helpers'
 SimpleCov.start 'rails'
+
+
+RSpec.configure do |config|
+  config.include FakeFS::SpecHelpers, fakefs: true
+end
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'

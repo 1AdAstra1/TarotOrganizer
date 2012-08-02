@@ -81,6 +81,7 @@ GEM
     factory_girl_rails (3.5.0)
       factory_girl (~> 3.5.0)
       railties (>= 3.0.0)
+    fakefs (0.4.0)
     ffi (1.0.11)
     gherkin (2.10.0)
       json (>= 1.4.6)
@@ -221,6 +222,7 @@ DEPENDENCIES
   cucumber-rails-training-wheels
   database_cleaner
   factory_girl_rails
+  fakefs
   haml (>= 3.0.0)
   haml-rails
   jquery-rails

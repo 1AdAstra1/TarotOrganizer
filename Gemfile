@@ -40,12 +40,14 @@ group :development, :test do
   gem "rspec-rails", ">= 2.0.1"
   gem 'factory_girl_rails'
   gem 'simplecov', :require => false
+  gem "fakefs", :require => "fakefs/safe"
 end
 
 gem "haml", ">= 3.0.0"
 gem "haml-rails"
 gem "jquery-rails"
-gem "rmagick"
+gem "rmagick", :require => 'RMagick'
+
 
 
 gem "babelphish"
