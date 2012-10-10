@@ -18,14 +18,28 @@ class SpreadImage
   def render
     @structure['width'] = @structure['width'].to_i
     @structure['height'] = @structure['height'].to_i
-    @image = Image.new(@structure['width'], @structure['height'])  
-    Dir.chdir(@localdir) do
-      #test mode doesn't like RMagick and hangs up, so can't test for that
-      if !Rails.env.test? then
-        @image.write(@filename);
-      end 
+    bgcolor = @structure['backgroundColor']
+    @image = Image.new(@structure['width'], @structure['height']) {
+      self.background_color = bgcolor
+    }
+    @structure['positions'].each do |position|
+      render_position(position)
     end
-    
+    Dir.chdir(@localdir) do
+    #test mode doesn't like RMagick and hangs up, so can't test for that
+      if !Rails.env.test? then
+      @image.write(@filename);
+      end
+    end
+
   end
-  
+
+  def render_position(position)
+    position_image = Image.new(position['width'].to_i, position['height'].to_i) {
+      self.background_color = position['backgroundColor']
+    }
+    position_image.border!(1, 1, "black")
+    @image.composite!(position_image, position['left'].to_i, position['top'].to_i, OverCompositeOp)
+  end
+
 end
