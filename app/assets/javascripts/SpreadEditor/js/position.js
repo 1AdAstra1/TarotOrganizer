@@ -37,6 +37,7 @@ var Position = function(spread, savedPosition) {
 			top : savedPosition.top,
 			left : savedPosition.left
 		});
+		if(savedPosition.number.mode === 'horizontal') this.rotate();
 		if(savedPosition.card) {
 			this.card = new Card(me.editor.getActiveDeck(), savedPosition.card.id, savedPosition.card.value, this.cardElement, this.valueElement);
 			if(savedPosition.card.reverted === true) this.card.setUpsideDown();
