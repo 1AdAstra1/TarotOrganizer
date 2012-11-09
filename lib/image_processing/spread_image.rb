@@ -32,7 +32,6 @@ class SpreadImage
       @image.write(@filename);
       end
     end
-
   end
 
   def render_position(position)

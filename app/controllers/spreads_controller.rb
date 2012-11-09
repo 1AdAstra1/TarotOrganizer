@@ -14,7 +14,7 @@ class SpreadsController < ApplicationController
   # GET /spreads/1.json
   def show
     @spread = Spread.find(params[:id])
-
+    @structure = JSON.parse(@spread.structure)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @spread }
