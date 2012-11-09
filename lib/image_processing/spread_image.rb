@@ -52,11 +52,25 @@ class SpreadImage
       self.fill = 'black'
       self.pointsize = position['fontSize'].to_i
     }
+    if(position['card']) then render_card(position_image, position, 'jpg') end
     @image.composite!(position_image, position['left'].to_i, position['top'].to_i, OverCompositeOp)
   end
   
-  def render_card(position_image, card)
-    
+  def render_card(position_image, position, format)
+    card = position['card']
+    card_image_path = Rails.root.join('app', 'assets', 'decks', @structure['deck'], card['id'] + '.' + format).to_s
+    card_image = ImageList.new(card_image_path).cur_image.resize!(card['width'].to_i, card['height'].to_i)
+    if card['reverted'] == true then card_image.flip! end
+    puts position_image.columns
+    puts card_image.rows
+    if(position['number']['mode'] == 'vertical') then
+      left = position_image.columns / 2 - card_image.columns / 2
+      top = position_image.rows - card_image.rows - 6
+    else
+      top = position_image.rows / 2 - card_image.rows / 2
+      left = position_image.columns / 2 - card_image.columns / 2 + 10
+    end 
+    position_image.composite!(card_image, left, top, OverCompositeOp)
   end
 
 end
