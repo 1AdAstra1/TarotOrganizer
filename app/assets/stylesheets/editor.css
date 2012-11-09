@@ -118,6 +118,7 @@ div.position.selected {
 
 div.position.vertical div.number {
 	margin-top: 3px;
+	margin-bottom: 3px;
 }
 
 div.position.horizontal div.value {

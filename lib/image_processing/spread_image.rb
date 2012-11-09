@@ -65,10 +65,10 @@ class SpreadImage
     puts card_image.rows
     if(position['number']['mode'] == 'vertical') then
       left = position_image.columns / 2 - card_image.columns / 2
-      top = position_image.rows - card_image.rows - 6
+      top = position['fontSize'].to_i + position['number']['marginTop'].to_i 
     else
       top = position_image.rows / 2 - card_image.rows / 2
-      left = position_image.columns / 2 - card_image.columns / 2 + 10
+      left = position_image.columns / 2 - card_image.columns / 2 + position['fontSize'].to_i / 2
     end 
     position_image.composite!(card_image, left, top, OverCompositeOp)
   end
