@@ -60,8 +60,6 @@ class SpreadImage
     card_image_path = Rails.root.join('app', 'assets', 'decks', @structure['deck'], card['id'] + '.' + format).to_s
     card_image = ImageList.new(card_image_path).cur_image.resize!(card['width'].to_i, card['height'].to_i)
     if card['reverted'] == true then card_image.flip! end
-    puts position_image.columns
-    puts card_image.rows
     if(position['number']['mode'] == 'vertical') then
       left = position_image.columns / 2 - card_image.columns / 2
       top = position['fontSize'].to_i + position['number']['marginTop'].to_i 
