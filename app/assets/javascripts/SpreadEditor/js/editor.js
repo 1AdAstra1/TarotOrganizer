@@ -26,7 +26,6 @@ var Editor = function (containerId, savedStructure) {
     	this.defaultPositionSize = this.savedStructure.size;
     	this.buttons.positionSize.val(this.defaultPositionSize);
     }
-    console.log(this.savedStructure.deck);
     this.loadDeck(this.activeDeck);
 };
 
