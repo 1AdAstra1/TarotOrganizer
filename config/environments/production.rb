@@ -58,5 +58,14 @@ TarotOrganizer::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
   
-  config.action_mailer.default_url_options = { :host => 'tarot-organizer.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'tarot-organizer.heroku.com' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :host => 'smtp.sendgrid.net', 
+    :port => '25', 
+    :authentication => :login, 
+    :user_name => 'app5100947@heroku.com',
+    :password => 'blbntyf[eq]'
+    }
+  config.action_mailer.raise_delivery_errors = true
 end
