@@ -65,7 +65,7 @@ TarotOrganizer::Application.configure do
     :port => '25', 
     :authentication => :login, 
     :user_name => 'app5100947@heroku.com',
-    :password => 'blbntyf[eq]'
+    :password => 'blbntyf[eq'
     }
   config.action_mailer.raise_delivery_errors = true
 end
