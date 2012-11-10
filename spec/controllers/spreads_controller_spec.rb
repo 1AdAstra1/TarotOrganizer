@@ -20,6 +20,7 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe SpreadsController do
+  login_user
   
   before :each do
     @client = Client.create!({:name => 'test', :comment => 'test', :start_date => '2010-11-21'})
@@ -42,14 +43,14 @@ describe SpreadsController do
 
   describe "GET index" do
     it "assigns all spreads as @spreads" do
-      get :index, {}, valid_session
+      get :index
       assigns(:spreads).should eq([@spread])
     end
   end
 
   describe "GET show" do
     it "assigns the requested spread as @spread and its JSON-parsed structure to @structure" do
-      get :show, {:id => @spread.to_param}, valid_session
+      get :show, {:id => @spread.to_param}
       assigns(:spread).should eq(@spread)
       assigns(:structure).should eq(JSON.parse(@spread.structure))
     end
@@ -57,14 +58,14 @@ describe SpreadsController do
 
   describe "GET new" do
     it "assigns a new spread as @spread" do
-      get :new, {}, valid_session
+      get :new, {}
       assigns(:spread).should be_a_new(Spread)
     end
   end
 
   describe "GET edit" do
     it "assigns the requested spread as @spread" do
-      get :edit, {:id => @spread.to_param}, valid_session
+      get :edit, {:id => @spread.to_param}
       assigns(:spread).should eq(@spread)
     end
   end
@@ -73,18 +74,18 @@ describe SpreadsController do
     describe "with valid params" do
       it "creates a new Spread" do
         expect {
-          post :create, {:spread => valid_attributes}, valid_session
+          post :create, {:spread => valid_attributes}
         }.to change(Spread, :count).by(1)
       end
 
       it "assigns a newly created spread as @spread" do
-        post :create, {:spread => valid_attributes}, valid_session
+        post :create, {:spread => valid_attributes}
         assigns(:spread).should be_a(Spread)
         assigns(:spread).should be_persisted
       end
 
       it "redirects to the created spread" do
-        post :create, {:spread => valid_attributes}, valid_session
+        post :create, {:spread => valid_attributes}
         response.should redirect_to(Spread.last)
       end
     end
@@ -93,14 +94,14 @@ describe SpreadsController do
       it "assigns a newly created but unsaved spread as @spread" do
         # Trigger the behavior that occurs when invalid params are submitted
         Spread.any_instance.stub(:save).and_return(false)
-        post :create, {:spread => {}}, valid_session
+        post :create, {:spread => {}}
         assigns(:spread).should be_a_new(Spread)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Spread.any_instance.stub(:save).and_return(false)
-        post :create, {:spread => {}}, valid_session
+        post :create, {:spread => {}}
         response.should render_template("new")
       end
     end
@@ -115,18 +116,18 @@ describe SpreadsController do
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
         Spread.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, {:id => spread.to_param, :spread => {'these' => 'params'}}, valid_session
+        put :update, {:id => spread.to_param, :spread => {'these' => 'params'}}
       end
 
       it "assigns the requested spread as @spread" do
         spread = Spread.create! valid_attributes
-        put :update, {:id => spread.to_param, :spread => valid_attributes}, valid_session
+        put :update, {:id => spread.to_param, :spread => valid_attributes}
         assigns(:spread).should eq(spread)
       end
 
       it "redirects to the spread" do
         spread = Spread.create! valid_attributes
-        put :update, {:id => spread.to_param, :spread => valid_attributes}, valid_session
+        put :update, {:id => spread.to_param, :spread => valid_attributes}
         response.should redirect_to(spread)
       end
     end
@@ -136,7 +137,7 @@ describe SpreadsController do
         spread = Spread.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Spread.any_instance.stub(:save).and_return(false)
-        put :update, {:id => spread.to_param, :spread => {}}, valid_session
+        put :update, {:id => spread.to_param, :spread => {}}
         assigns(:spread).should eq(spread)
       end
 
@@ -144,7 +145,7 @@ describe SpreadsController do
         spread = Spread.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Spread.any_instance.stub(:save).and_return(false)
-        put :update, {:id => spread.to_param, :spread => {}}, valid_session
+        put :update, {:id => spread.to_param, :spread => {}}
         response.should render_template("edit")
       end
     end
@@ -154,13 +155,13 @@ describe SpreadsController do
     it "destroys the requested spread" do
       spread = Spread.create! valid_attributes
       expect {
-        delete :destroy, {:id => spread.to_param}, valid_session
+        delete :destroy, {:id => spread.to_param}
       }.to change(Spread, :count).by(-1)
     end
 
     it "redirects to the spreads list" do
       spread = Spread.create! valid_attributes
-      delete :destroy, {:id => spread.to_param}, valid_session
+      delete :destroy, {:id => spread.to_param}
       response.should redirect_to(spreads_url)
     end
   end

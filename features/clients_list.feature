@@ -6,7 +6,12 @@ Feature: display list of clients
 
 Background: clients have been added to database
 
-  Given the following clients exist:
+  Given the following users exist:
+  | email 					| password		| password_confirmation		|
+  | example@example.com		| gotohell		| gotohell					|
+  | olga@thesexycoder.com	| mimimi		| mimimi					|
+
+  And the following clients exist:
   | name                   | start_date | comment |
   | John Doe               | 2012-01-03	| Dumb idiot, but pays a lot of money |
   | Harry Potter           | 2012-02-04	| Little cute schoolboy, mmmmm |
@@ -14,6 +19,7 @@ Background: clients have been added to database
   | Kuzya Tapochkin        | 2012-01-08	| Wants a spread about his GF |
   | Cheburashka            | 2012-03-06	| Fantasy creature |
 
+  And I am logged in as olga@thesexycoder.com
   And I am on the clients page
   
 Scenario: show the list of clients

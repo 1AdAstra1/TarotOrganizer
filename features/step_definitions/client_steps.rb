@@ -17,8 +17,6 @@ end
 
 Given /the following spreads exist/ do |spreads_table|
   spreads_table.hashes.each do |item|
-  # each returned element will be a hash whose key is the table header.
-  # you should arrange to add that client to the database here.
     name = item.delete('client_name')
     new_item = Spread.create(item)
     client = Client.find_by_name(name)
@@ -26,6 +24,22 @@ Given /the following spreads exist/ do |spreads_table|
     client.save
     Spread.find_by_name(item[:name]).should be_true
   end
+end
+
+Given /the following users exist/ do |users_table|
+  @added_users = {}
+  users_table.hashes.each do |item|
+    @added_users[item[:email]] = item
+    User.create!(item).confirm!
+  end
+end
+
+Given /I am logged in as (.*)/ do |user_email|
+  user = @added_users[user_email];
+  visit('/users/sign_in');
+  fill_in("user_email", :with => user[:email])
+  fill_in("user_password", :with =>user[:password])
+  click_button("Sign in")
 end
 
 def group_exists(unsee, list, xpath='//*')

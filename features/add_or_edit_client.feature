@@ -6,9 +6,15 @@ Feature: adding and editing clients
 
 Background: clients have been added to database
 
-  Given the following clients exist:
+  Given the following users exist:
+  | email 					| password		| password_confirmation		|
+  | example@example.com		| gotohell		| gotohell					|
+
+  And the following clients exist:
   | name                   | start_date | comment |
   | Cheburashka            | 2012-03-06	| Fantasy creature |
+  
+  And I am logged in as example@example.com
   
 Scenario: filling the client form and saving data
   When I am on the new client page
