@@ -8,11 +8,11 @@ class SpreadImage
     @structure = JSON.parse(spread.structure)
     @path = ''
     @format = 'png'
-    @dir = 'spread_images'
+    @dir = 'tmp'
     @filename = 'spread_' + @id.to_s + '.' + @format
-    @path = '/assets/' + @dir + '/' + @filename
-    
-    @localdir = Rails.root.join('app', 'assets', 'images', @dir).to_s
+    @path = ''
+
+    @localdir = Rails.root.join(@dir).to_s
     @localpath = @localdir + '/' + @filename
   end
 
@@ -29,7 +29,13 @@ class SpreadImage
     Dir.chdir(@localdir) do
     #test mode doesn't like RMagick and hangs up, so can't test for that
       if !Rails.env.test? then
-      @image.write(@filename);
+        @image.write(@filename);
+        s3 = AWS::S3.new
+        bucket = s3.buckets['spreads']
+        obj = bucket.objects[@filename]
+        obj.write(:file => @localpath)
+        obj.acl = :public_read
+        @path = obj.public_url.to_s
       end
     end
   end
@@ -54,7 +60,7 @@ class SpreadImage
     if(position['card']) then render_card(position_image, position, 'jpg') end
     @image.composite!(position_image, position['left'].to_i, position['top'].to_i, OverCompositeOp)
   end
-  
+
   def render_card(position_image, position, format)
     card = position['card']
     card_image_path = Rails.root.join('app', 'assets', 'decks', @structure['deck'], card['id'] + '.' + format).to_s
@@ -62,11 +68,11 @@ class SpreadImage
     if card['reverted'] == true then card_image.flip! end
     if(position['number']['mode'] == 'vertical') then
       left = position_image.columns / 2 - card_image.columns / 2
-      top = position['fontSize'].to_i + position['number']['marginTop'].to_i 
+      top = position['fontSize'].to_i + position['number']['marginTop'].to_i
     else
       top = position_image.rows / 2 - card_image.rows / 2
       left = position_image.columns / 2 - card_image.columns / 2 + position['fontSize'].to_i / 2
-    end 
+    end
     position_image.composite!(card_image, left, top, OverCompositeOp)
   end
 

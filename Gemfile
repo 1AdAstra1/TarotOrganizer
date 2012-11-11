@@ -48,8 +48,7 @@ gem "haml-rails"
 gem "jquery-rails"
 gem "rmagick", :require => 'RMagick'
 gem "devise"
-
-
+gem "aws-sdk"
 
 gem "babelphish"
 gem "uploader"
