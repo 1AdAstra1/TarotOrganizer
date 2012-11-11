@@ -7,7 +7,6 @@ class CreateSpreads < ActiveRecord::Migration
       t.string :structure
       t.string :comment
       t.string :feedback
-
       t.timestamps
     end
   end

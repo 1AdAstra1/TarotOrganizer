@@ -11,11 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121110104349) do
+ActiveRecord::Schema.define(:version => 20121111102309) do
 
   create_table "clients", :force => true do |t|
     t.string   "name"
-    t.string   "comment"
+    t.text     "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.date     "start_date"
@@ -25,9 +25,9 @@ ActiveRecord::Schema.define(:version => 20121110104349) do
     t.integer  "client_id"
     t.string   "name"
     t.date     "date"
-    t.string   "structure"
-    t.string   "comment"
-    t.string   "feedback"
+    t.text     "structure"
+    t.text     "comment"
+    t.text     "feedback"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image"
