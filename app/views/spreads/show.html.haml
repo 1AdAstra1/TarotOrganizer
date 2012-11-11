@@ -15,10 +15,11 @@
     -@structure['positions'].each do |position|
       %li
         %span.position-title=position['description']
-        \:
-        %span.position-card=position['card']['name']
-        \-
-        %span.position-value=position['card']['value']
+        -if position['card'] then
+          \:
+          %span.position-card=position['card']['name']
+          \-
+          %span.position-value=position['card']['value']
 %p
   %strong=t("helpers.label.spread.comment") + ':'
   = @spread.comment
