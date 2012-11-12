@@ -10,7 +10,14 @@ end
 #Declarative step for populating the clients table
 
 Given /the following clients exist/ do |clients_table|
-  populate_table(clients_table, Client)
+  clients_table.hashes.each do |item|
+    user_email = item.delete('user')
+    new_item = Client.create(item)
+    user = User.find_by_email(user_email)
+    user.clients.push(new_item)
+    user.save
+    Client.find_by_name(item[:name]).should be_true
+  end
 end
 
 #Declarative step for populating the spreads table
@@ -20,6 +27,7 @@ Given /the following spreads exist/ do |spreads_table|
     name = item.delete('client_name')
     new_item = Spread.create(item)
     client = Client.find_by_name(name)
+    new_item.user = client.user
     client.spreads.push(new_item)
     client.save
     Spread.find_by_name(item[:name]).should be_true

@@ -12,19 +12,21 @@ Background: clients have been added to database
   | olga@thesexycoder.com	| mimimi		| mimimi					|
 
   And the following clients exist:
-  | name                   | start_date | comment |
-  | John Doe               | 2012-01-03	| Dumb idiot, but pays a lot of money |
-  | Harry Potter           | 2012-02-04	| Little cute schoolboy, mmmmm |
-  | Vasya Pupkin           | 2012-01-05	| Some dude I met online |
-  | Kuzya Tapochkin        | 2012-01-08	| Wants a spread about his GF |
-  | Cheburashka            | 2012-03-06	| Fantasy creature |
+  | name                   | start_date | comment 									 | user							|
+  | John Doe               | 2012-01-03	| Dumb idiot, but pays a lot of money		 | olga@thesexycoder.com        |
+  | Harry Potter           | 2012-02-04	| Little cute schoolboy, mmmmm 				 | olga@thesexycoder.com		|
+  | Vasya Pupkin           | 2012-01-05	| Some dude I met online 					 | olga@thesexycoder.com		|
+  | Kuzya Tapochkin        | 2012-01-08	| Wants a spread about his GF 				 | olga@thesexycoder.com		|
+  | Cheburashka            | 2012-03-06	| Fantasy creature							 | olga@thesexycoder.com		|
+  | Not my client		   | 2012-02-11 | Somebody else's client					 | example@example.com			|
 
   And I am logged in as olga@thesexycoder.com
   And I am on the clients page
   
 Scenario: show the list of clients
   When I am on the clients page
-  Then I should see all of the clients
+  Then I should see the following clients: Vasya Pupkin, Kuzya Tapochkin, John Doe, Harry Potter, Cheburashka
+  And I should not see the following clients: Not my client
   
 Scenario: sort clients by name
   When I sort clients by "Имя"
@@ -38,8 +40,8 @@ Scenario: filter clients by name
   
 Scenario: dropping filters
   When I drop the list filters
-  Then I should see "John Doe" before "Harry Potter"
-  And I should see all of the clients
+  Then I should see the following clients: Vasya Pupkin, Kuzya Tapochkin, John Doe, Harry Potter, Cheburashka
+  And I should see "John Doe" before "Harry Potter"
 
 Scenario: leaving this page for client view
   When I follow "John Doe"
@@ -49,7 +51,7 @@ Scenario: leaving this page to edit a client
   When I click "Редактировать" in the row with Harry Potter
   Then I should be redirected to the edit client page for Harry Potter
   
-Scenario: leaving this page to add a client
+Scenario: leaving this page to add a client 
   When I follow "Добавить клиента"
   Then I should be on the new client page
  

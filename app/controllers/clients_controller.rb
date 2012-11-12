@@ -24,9 +24,9 @@ class ClientsController < ApplicationController
     
     if  (params[:filter] != nil) and (!params[:filter]['name'].empty?) then
       session[:filter_name] = params[:filter]['name']
-      @clients = Client.search_in_name(params[:filter]['name']).order(query_params[:order])
+      @clients = Client.search_in_name(current_user.id, params[:filter]['name']).order(query_params[:order])
     else
-      @clients = Client.find(:all, query_params)
+      @clients = Client.find_user_items(current_user.id, {}).order(query_params[:order])
     end
 
     respond_to do |format|
@@ -38,7 +38,7 @@ class ClientsController < ApplicationController
   # GET /clients/1
   # GET /clients/1.json
   def show
-    @client = Client.find(params[:id])
+    @client = Client.find_user_item(current_user.id, params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -49,7 +49,8 @@ class ClientsController < ApplicationController
   # GET /clients/new
   # GET /clients/new.json
   def new
-    @client = Client.new
+    
+    @client = current_user.clients.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -59,13 +60,13 @@ class ClientsController < ApplicationController
 
   # GET /clients/1/edit
   def edit
-    @client = Client.find(params[:id])
+    @client = Client.find_user_item(current_user.id, params[:id])
   end
 
   # POST /clients
   # POST /clients.json
   def create
-    @client = Client.new(params[:client])
+    @client = current_user.clients.build(params[:client])
 
     respond_to do |format|
       if @client.save
@@ -81,7 +82,7 @@ class ClientsController < ApplicationController
   # PUT /clients/1
   # PUT /clients/1.json
   def update
-    @client = Client.find(params[:id])
+    @client = Client.find_user_item(current_user.id, params[:id]) 
 
     respond_to do |format|
       if @client.update_attributes(params[:client])
@@ -97,7 +98,7 @@ class ClientsController < ApplicationController
   # DELETE /clients/1
   # DELETE /clients/1.json
   def destroy
-    @client = Client.find(params[:id])
+    @client = Client.find_user_item(current_user.id, params[:id])
     @client.destroy
 
     respond_to do |format|

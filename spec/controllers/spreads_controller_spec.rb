@@ -23,7 +23,7 @@ describe SpreadsController do
   login_user
   
   before :each do
-    @client = Client.create!({:name => 'test', :comment => 'test', :start_date => '2010-11-21'})
+    @client = Client.create!({:name => 'test', :comment => 'test', :start_date => '2010-11-21', "user_id" => 1})
     @spread = Spread.create! valid_attributes
   end
 
@@ -31,7 +31,7 @@ describe SpreadsController do
   # Spread. As you add validations to Spread, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {:name => 'Test spread', :client_id => @client.id, :structure => '{"width":"497px","height":"262px","border":"","backgroundColor":"rgb(73, 109, 73)","deck":"rider-waite","size":"large","positions":[{"width":"173px","height":"123px","position":"absolute","top":"59px","left":"50px","fontSize":"24px","textAlign":"center","backgroundColor":"rgb(238, 238, 238)","border":"","number":{"value":1,"mode":"horizontal","textAlign":"left","position":"relative","top":"61.5px","marginTop":"-12px","marginLeft":"10px","marginRight":"10px"},"description":"rderyrwety","card":{"image":"/assets/rider-waite/lovers.jpg","width":66,"height":115,"reverted":true,"id":"lovers","name":"Влюблённые","value":"retyretyrety rtyretyer","marginTop":"3px","marginBottom":"3px"}},{"width":"123px","height":"173px","position":"absolute","top":"61px","left":"325px","fontSize":"24px","textAlign":"center","backgroundColor":"rgb(238, 238, 238)","border":"","number":{"value":2,"mode":"vertical","textAlign":"center","position":"static","top":"auto","marginTop":"3px","marginLeft":"0px","marginRight":"0px"},"description":"rtyrtyrety","card":{"image":"/assets/rider-waite/cups-8.jpg","width":80,"height":140,"reverted":false,"id":"cups-8","name":"8 Чаш","value":"111","marginTop":"0px","marginBottom":"0px"}}]}', :date => '2012-07-15'}
+    {:name => 'Test spread', "user_id" => 1, :client_id => @client.id, :structure => '{"width":"497px","height":"262px","border":"","backgroundColor":"rgb(73, 109, 73)","deck":"rider-waite","size":"large","positions":[{"width":"173px","height":"123px","position":"absolute","top":"59px","left":"50px","fontSize":"24px","textAlign":"center","backgroundColor":"rgb(238, 238, 238)","border":"","number":{"value":1,"mode":"horizontal","textAlign":"left","position":"relative","top":"61.5px","marginTop":"-12px","marginLeft":"10px","marginRight":"10px"},"description":"rderyrwety","card":{"image":"/assets/rider-waite/lovers.jpg","width":66,"height":115,"reverted":true,"id":"lovers","name":"Влюблённые","value":"retyretyrety rtyretyer","marginTop":"3px","marginBottom":"3px"}},{"width":"123px","height":"173px","position":"absolute","top":"61px","left":"325px","fontSize":"24px","textAlign":"center","backgroundColor":"rgb(238, 238, 238)","border":"","number":{"value":2,"mode":"vertical","textAlign":"center","position":"static","top":"auto","marginTop":"3px","marginLeft":"0px","marginRight":"0px"},"description":"rtyrtyrety","card":{"image":"/assets/rider-waite/cups-8.jpg","width":80,"height":140,"reverted":false,"id":"cups-8","name":"8 Чаш","value":"111","marginTop":"0px","marginBottom":"0px"}}]}', :date => '2012-07-15'}
   end
   
   # This should return the minimal set of values that should be in the session

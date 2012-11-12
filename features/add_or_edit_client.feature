@@ -11,8 +11,8 @@ Background: clients have been added to database
   | example@example.com		| gotohell		| gotohell					|
 
   And the following clients exist:
-  | name                   | start_date | comment |
-  | Cheburashka            | 2012-03-06	| Fantasy creature |
+  | name                   | start_date | comment 					| user 					|
+  | Cheburashka            | 2012-03-06	| Fantasy creature 			| example@example.com	|	
   
   And I am logged in as example@example.com
   

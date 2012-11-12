@@ -1,6 +1,8 @@
 class Spread < ActiveRecord::Base
   require 'json'
+  extend ModelsCommon
   belongs_to :client
+  belongs_to :user
   validates_with SpreadValidator
   after_save :generate_image
 

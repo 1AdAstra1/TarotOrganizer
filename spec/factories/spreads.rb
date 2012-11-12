@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :spread do
+    user_id 1
     client_id 1
     name "MyString"
     date "2012-07-10"

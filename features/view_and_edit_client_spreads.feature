@@ -11,9 +11,9 @@ Background: clients have been added to database
   | olga@thesexycoder.com	| mimimi		| mimimi					|
 
   And the following clients exist:
-  | name                   | start_date | comment |
-  | John Doe               | 2012-01-03	| Dumb idiot, but pays a lot of money |
-  | Harry Potter           | 2012-02-04	| Little cute schoolboy, mmmmm |
+  | name                   | start_date | comment 								| user							|
+  | John Doe               | 2012-01-03	| Dumb idiot, but pays a lot of money 	| olga@thesexycoder.com			|
+  | Harry Potter           | 2012-02-04	| Little cute schoolboy, mmmmm 			| olga@thesexycoder.com			|
 
   And the following spreads exist:
   | name			| client_name	| structure		| date 			| comment		| feedback		|

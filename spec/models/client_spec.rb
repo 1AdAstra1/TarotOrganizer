@@ -21,13 +21,13 @@ describe Client do
     
     it 'should search clients by substring in the name' do
       clients = {
-        :out => FactoryGirl.build(:client, :name => 'John Doe', :comment => 'Test comment', :start_date => '2012-01-03'), 
-        :in => FactoryGirl.build(:client, :name => 'Harry Potter', :comment => 'Test comment', :start_date => '2012-01-03')
+        :out => FactoryGirl.build(:client, :user_id=> 1, :name => 'John Doe', :comment => 'Test comment', :start_date => '2012-01-03'), 
+        :in => FactoryGirl.build(:client, :user_id=> 1, :name => 'Harry Potter', :comment => 'Test comment', :start_date => '2012-01-03')
       }
       clients.each do |key, client|
         client.save!
       end
-      search_clients = Client.search_in_name('arr')
+      search_clients = Client.search_in_name(1, 'arr')
       search_clients.should include clients[:in]
       search_clients.should_not include clients[:out]
     end
