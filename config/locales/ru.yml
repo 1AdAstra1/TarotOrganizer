@@ -275,6 +275,11 @@ ru:
       <<: *client_atts
     spread:
       <<: *spread_atts
+    user:
+      email: Ваш E-mail
+      password: Пароль
+      password_confirmation: Подтверждение пароля
+      remember_me: Помнить меня
   
   # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:

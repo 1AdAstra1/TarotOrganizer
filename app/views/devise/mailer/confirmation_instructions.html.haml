@@ -1,0 +1,7 @@
+%h3 
+  Добро пожаловать на сайт 
+  = link_to 'Блокнот Таролога', root_url
+  !
+
+%p Для подтверждения адреса электронной почты и завершения процесса регистрации необходимо пройти по ссылке:
+%p= link_to 'Подтвердить адрес', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token)
