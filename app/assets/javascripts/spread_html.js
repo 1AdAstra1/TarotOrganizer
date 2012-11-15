@@ -9,7 +9,7 @@ var getSpreadHTML = function(imageUrl) {
     descriptionsExport.find('span').removeClass();
     descriptionsExport.appendTo(wrapper);
 
-    return wrapper.html();
+    return wrapper.html().replace(/(\r\n|\n|\r)/gm, "");
 };
 
 var loadExport = function(mode, imageUrl) {
