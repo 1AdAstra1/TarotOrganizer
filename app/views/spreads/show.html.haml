@@ -14,7 +14,7 @@
   %ol
     -@structure['positions'].each do |position|
       %li
-        %span.position-title=position['description']
+        %strong=position['description']
         -if position['card'] then
           \:
           %span.position-card=position['card']['name']
@@ -26,6 +26,11 @@
 %p
   %strong=t("helpers.label.spread.feedback") + ':'
   = @spread.feedback
+
+%div#export-buttons
+  %button{:onclick => "loadExport('html', '#{@spread.image}')"}
+    Получить HTML-код
+%div#export
 
 = link_to 'Редактировать расклад', edit_spread_path(@spread)
 \|
