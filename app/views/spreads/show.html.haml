@@ -30,6 +30,8 @@
 %div#export-buttons
   %button{:onclick => "loadExport('html', '#{@spread.image}')"}
     Получить HTML-код
+  %button{:onclick => "loadExport('bbcode', '#{@spread.image}')"}
+    Получить BBCode
 %div#export
 
 = link_to 'Редактировать расклад', edit_spread_path(@spread)
