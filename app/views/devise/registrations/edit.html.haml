@@ -1,4 +1,4 @@
-%h2 Редактирование данных пользователя
+%h3.entry-title Редактирование данных пользователя
 
 = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
   = devise_error_messages!
@@ -14,9 +14,9 @@
     = f.label :password_confirmation 
     = f.password_field :password_confirmation
 
-	%div
-  	= f.label :current_password
-  	%em (для подтверждения операции)
+  %div
+    = f.label :current_password
+    %em (для подтверждения операции)
     = f.password_field :current_password
 
   %div= f.submit "Редактировать данные", {:id => 'edit_user_button'}

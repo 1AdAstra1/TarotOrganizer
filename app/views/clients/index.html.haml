@@ -1,10 +1,11 @@
 = button_to 'Добавить клиента', new_client_path, :method => :get
 
-= form_tag clients_path, :method => :get do
-  Фильтр: 
-  = text_field :filter, :name
-  = hidden_field_tag 'sort', @sort_column
-  = submit_tag 'Применить', :id => 'filter_apply'
+%div#clients_filter
+  = form_tag clients_path, :method => :get do
+    Фильтр: 
+    = text_field :filter, :name
+    = hidden_field_tag 'sort', @sort_column
+    = submit_tag 'Применить', :id => 'filter_apply'
   
 %a#drop_filters{:href => clients_path({:drop_filters => '1'})} Сбросить фильтры
 

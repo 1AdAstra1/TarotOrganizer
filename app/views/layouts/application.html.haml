@@ -25,9 +25,25 @@
           %div#content-wrapper
             %div#main-wrapper 
               %div#main-t
+                =render "global/top_banner"
               %div#main.section
                 %div.widget
                   =yield
             %div#sidebar-wrapper
+              %div#search
+              %div#sidebar.sidebar.section
+                =render "global/sidebar"
+              %div#sidebar-b
             %div.clear
-    %div#footer-wrapper
+      %div#footer-wrapper
+        %div#footer.footer.section
+        %div#credits           
+          %p
+            Разработка &copy;2012 Ad Astra
+            %br
+            Дизайн &copy; 2010 
+            %a{ :href=> "http://victorianstyle-splashy.blogspot.ru/"} Victorian Style
+            %br
+            %a{:title => "Victorian Blogger Templates", :href=> "http://www.splashytemplates.com/"} Victorian Blogger Templates
+            &
+            %a{:title => "Photography Logos", :href=> "http://www.photographylogos.net/"} Photography Logos

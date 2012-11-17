@@ -1,9 +1,10 @@
-%div#PageList1.widget.PageList
-  %div.widget-content
-    %ul
-      %li{:class => ('selected' if @current_controller == 'clients')}
-        %a{:href => clients_path}
-          Клиенты
-      %li{:class => ('selected' if @current_controller == 'spreads')}
-        %a{:href => spreads_path}
-          Расклады
+-if signed_in?
+  %div#PageList1.widget.PageList
+    %div.widget-content
+      %ul
+        %li{:class => ('selected' if @current_controller == 'clients')}
+          %a{:href => clients_path}
+            Клиенты
+        %li{:class => ('selected' if @current_controller == 'spreads')}
+          %a{:href => spreads_path}
+            Расклады
