@@ -35,5 +35,4 @@ var loadExport = function(mode, imageUrl) {
 	}
 	exportBox.html('');
 	exportArea.text(content).appendTo(exportBox);
-			
 };

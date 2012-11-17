@@ -1,0 +1,26 @@
+!!!
+- site_title = "Блокнот Таролога"
+- site_description = "Организуйте свои расклады и своих кверентов онлайн"
+%html
+  %head
+    %title= site_title
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
+    %div#body2
+      %div#outer-wrapper
+        %div#wrap2
+          %div#header-wrapper
+            %div#header.header.section
+              %div#Header1.widget.Header
+                %div#header-inner
+                  %div.titlewrapper
+                    %h1.title= link_to site_title, root_url
+                  %div.descriptionwrapper
+                    %p.description
+                      %span= site_description
+            %div#menu.menu.section
+              =render "global/menu"
+          =yield
+    %div#footer-wrapper

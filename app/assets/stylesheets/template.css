@@ -1,0 +1,347 @@
+label {
+	display: block;
+}
+
+#navbar-iframe{display:none !important;}
+/* Content
+----------------------------------------------- */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,span,strike,strong,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;list-style-type: none;}
+body#layout #outer-wrapper{width:1000px !important;}
+body#layout #credits{display:none;}
+body#layout #footer-wrapper, body#layout #header-wrapper{height:100%;}
+a img{border-width:0;}
+body {
+font: normal normal 16px Georgia, Utopia, 'Palatino Linotype', Palatino, serif;
+color: #58371e;
+background: #ebe4cc url(http://3.bp.blogspot.com/_8Frexm8Y9LQ/TEy0WwJZzHI/AAAAAAAAAsc/BkoGKqFF0dc/s1600/body-bg.jpg) repeat;
+line-height:1.6em;
+text-align: left;
+}
+#body2{
+width:100%;
+background:url(http://1.bp.blogspot.com/_8Frexm8Y9LQ/TEy0bw23bgI/AAAAAAAAAsk/bGBs7zFscvw/s1600/body-bg2.jpg) repeat-x;
+}
+a:link{text-decoration:none;color:#b45f06;}
+a:visited{text-decoration:none;color:#b45f06;}
+a:hover{text-decoration:underline;color:#000000;}
+
+/* Header
+----------------------------------------------- */
+#header-wrapper {
+width: 942px;
+height:199px;
+}
+#header { 
+padding:25px 0 0 25px;
+color: #b4895c;
+}
+.header h1 {
+font: normal bold 42px 'Times New Roman', Times, FreeSerif, serif;
+color: #b4895c;
+line-height:1.2em;
+letter-spacing:-1px;
+}
+.header h1 a {
+color: #b4895c;
+}
+#header a:hover {
+color: #b4895c;
+text-decoration:none;
+}
+.header .description {
+font: italic normal 16px 'Times New Roman', Times, FreeSerif, serif;
+color: #b4895c;
+max-width:700px;
+line-height: 1.4em;
+}
+#header img {
+margin:0 auto;
+}
+
+/* Pages
+----------------------------------------------- */
+#PageList1 h2{
+display:none;
+}
+#menu{
+width: 942px;
+font:normal 18px Georgia;
+padding:50px 0 14px;
+}
+#menu ul{
+background: url(http://4.bp.blogspot.com/_8Frexm8Y9LQ/TEy0xCTl3eI/AAAAAAAAAtM/NKlpkxIij_Y/s1600/bg-menu.png) no-repeat left bottom;
+padding:6px 0 10px;
+text-align:center;
+}
+#menu li {
+display:inline;
+margin-right:20px;
+}
+#menu li a {
+color:#fff;
+}
+li.selected{
+background:#16100e;
+padding:12px 16px 14px;
+border:1px solid #725229;
+}
+#menu li.selected a{
+color:#fff;
+font-weight:normal;
+}
+#menu li a:hover {
+text-decoration:none;
+color:#725229;
+}
+
+
+/* Columns
+----------------------------------------------- */
+#outer-wrapper {
+width: 942px;
+margin:0 auto;
+text-align:left;
+}
+#content-wrapper {
+width: 942px;
+}
+#crosscol-wrapper{
+width: 920px;
+display:none;
+}
+#main-wrapper {
+width: 538px;
+float: left;
+padding:10px 20px 0;
+}
+#main-t img{
+border:7px solid #937c4c;
+}
+#main{
+padding:25px 0 0 0;
+}
+#sidebar-wrapper {
+background:url(http://1.bp.blogspot.com/_8Frexm8Y9LQ/TEy09l8k7MI/AAAAAAAAAts/jQMLLd_7asw/s1600/sidebartile-bg.png) repeat-y;
+width: 346px;
+float: right;
+color: #222222;
+}
+#sidebar-b{
+background:url(http://2.bp.blogspot.com/_8Frexm8Y9LQ/TEy0jjUd7_I/AAAAAAAAAs0/1bf9J75bSGc/s1600/sidebarbot-bg.jpg) no-repeat;
+width: 346px;
+height:219px;
+}
+#sidebar-wrapper .widget{
+padding:3px 50px 25px 100px;
+background:url(http://1.bp.blogspot.com/_8Frexm8Y9LQ/TEy1AztfUYI/AAAAAAAAAt0/c8a6c_0r5Io/s1600/sidebar-widget-bg.png) no-repeat 40px bottom;
+}
+
+/* Search
+----------------------------------------------- */
+#search{
+background:url(http://3.bp.blogspot.com/_8Frexm8Y9LQ/TEy0f2Ah1rI/AAAAAAAAAss/68yNR1Ia6TI/s1600/searchbox-bg.jpg) no-repeat;
+width:346px;
+height:196px;
+}
+#searchform{
+background:transparent;
+padding:120px 0 0 60px;
+}
+#searchtext{
+background:transparent;
+width:170px;
+padding:10px 0 0 4px;
+color:#070504;
+border: none;
+float:left;
+font:normal 14px Georgia;
+}
+#searchbutton{
+background:transparent;
+margin-left:27px;
+width:44px;
+height:44px;
+border:none;
+float:left;
+}
+
+/* Sidebar Headings
+----------------------------------------------- */
+#sidebar-wrapper h2 {
+margin:.5em 0 .25em;
+font: normal bold 14px 'Times New Roman', Times, FreeSerif, serif;;
+color: #1b120f;
+text-transform:uppercase;
+}
+
+/* Posts
+-----------------------------------------------*/
+h2.date-header {
+margin:0 0 .5em 0em;
+font: normal normal 14px Georgia, Utopia, 'Palatino Linotype', Palatino, serif;
+color:#8b5129;
+display:inline;
+}
+.post {
+margin-bottom:35px;
+padding-bottom:35px;
+}
+h3.entry-title {
+background:url(http://3.bp.blogspot.com/_8Frexm8Y9LQ/TEy03apH5UI/AAAAAAAAAtc/-azuy_4ZpTo/s1600/date-bg.png) no-repeat;
+margin:.25em 0 0;
+padding:4px 0 4px 70px;
+font: normal normal 30px Georgia, Utopia, 'Palatino Linotype', Palatino, serif;
+color:#58371e;
+}
+h3.entry-title a, h3.entry-titlea:visited, h3.entry-title strong {
+color:#58371e;
+text-decoration:none;
+}
+h3.entry-title strong, h3.entry-title a:hover {
+color:#58371e;
+text-decoration:none;
+}
+.post-body{
+background:url(http://2.bp.blogspot.com/_8Frexm8Y9LQ/TEy06RVaPcI/AAAAAAAAAtk/X_a76XMY0_8/s1600/postvertical-divider.png) repeat-y;
+margin: 25px 0 20px;
+padding-left:15px;
+line-height:1.4em;
+}
+.post blockquote {
+background:#d8c2a2 url(http://1.bp.blogspot.com/_8Frexm8Y9LQ/TEy1AztfUYI/AAAAAAAAAt0/c8a6c_0r5Io/s1600/sidebar-widget-bg.png) repeat-x;
+font-size:14px;
+color:#69562f;
+line-height:1.4em;
+margin:10px 0 10px 12px;
+padding:12px;
+-moz-border-radius:5px;
+-webkit-border-radius:5px;
+}
+.post-body ul, .post-body ol{
+padding: 5px 10px 5px 30px;
+}
+.post-body ul li{
+padding: 1px 0;
+list-style-type: disc;
+}
+.post-body ol li{
+padding: 1px 0;
+list-style-type: decimal;
+}
+.jump-link{
+display:inline;
+}
+.post-footer {
+margin: .75em 0;
+font: normal normal 12px Georgia, Utopia, 'Palatino Linotype', Palatino, serif;
+color:#8b5129;
+line-height: 1.4em;
+}
+.post img, table.tr-caption-container {
+padding:4px;
+/*border:1px solid #725229; /*
+}
+.tr-caption-container img {
+border: none;
+padding: 0;
+}
+
+/* Comments
+----------------------------------------------- */
+#comments, #comments h4 {
+margin:10px 0;
+}
+#comments-block .comment-author, #comments-block .comment-body, #comments-block .comment-footer{
+background:#ddceb1;
+}
+#comments-block .comment-author {
+padding:7px 0 5px 10px;
+border:1px solid #ceb998;
+border-bottom:none;
+-moz-border-radius-topleft:5px;
+-moz-border-radius-topright:5px;
+-webkit-border-top-left-radius:5px;
+-webkit-border-top-right-radius:5px;
+}
+#comments-block .comment-body {
+border-left:1px solid #ceb998;
+border-right:1px solid #ceb998;
+}
+#comments-block .comment-footer {
+padding:10px 0 7px 10px;
+margin-bottom:25px;
+font-size:85%;
+border:1px solid #ceb998;
+border-top:none;
+}
+#comments-block .comment-body p {
+padding:0 10px;
+}
+.deleted-comment {
+color:gray;
+font-style:italic;
+}
+.comment-form{
+padding-left:45px;
+}
+#blog-pager {
+text-align:center;
+}
+#blog-pager-newer-link {
+float:left;
+}
+#blog-pager-older-link {
+float:right;
+}
+.feed-links {
+clear: both;
+line-height: 2.5em;
+}
+
+/* Sidebar Content
+----------------------------------------------- */
+.sidebar {
+line-height: 1.5em;
+}
+.sidebar .widget, .main .widget { 
+margin:0 0 1.5em;
+padding:0 0 1.5em;
+}
+.sidebar li{
+background:url(http://2.bp.blogspot.com/_8Frexm8Y9LQ/TEy0z1GMM6I/AAAAAAAAAtU/ObRU-X-T7R8/s1600/bg-sidebar-li.png) no-repeat 0 6px;
+padding:0 0 3px 22px;
+line-height:1.5em;
+}
+
+/* Profile 
+----------------------------------------------- */
+.profile-img{
+padding:2px;
+margin-right:5px;
+border:1px solid #CCCCCC;
+float:left;
+}
+
+/* Footer
+----------------------------------------------- */
+#footer-wrapper {
+background:#241610 url(http://3.bp.blogspot.com/_8Frexm8Y9LQ/TEy0tP8wx2I/AAAAAAAAAtE/HYRjnGD6UHI/s1600/bg-footer.png) repeat-x;
+width:100%;
+height:158px;
+}
+#credits{
+background:url(http://2.bp.blogspot.com/_8Frexm8Y9LQ/TEy0pfkSc7I/AAAAAAAAAs8/TyGtcyNOFvs/s1600/bg-credits.png) no-repeat left bottom;
+width:942px;
+height:158px;
+margin:0 auto;
+color: #968a6c;
+line-height:1.1em;
+font-size:12px;
+}
+#credits p{
+padding:55px 70px 0 0;
+text-align:right;
+}
+#credits a{
+color: #968a6c;
+}
