@@ -72,11 +72,6 @@ Editor.prototype.addSpreadEvents = function() {
 		this.removeCards();
     }, this));
     
-    this.buttons.getHTML.click($.proxy(function(e) {
-    	e.preventDefault();
-		this.showExport();
-    }, this));
-    
     this.buttons.positionSize.change($.proxy(function(e) {
     	e.preventDefault();
 		this.setPositionSize(this.buttons.positionSize.val());
@@ -175,7 +170,6 @@ Editor.prototype.createToolbar = function() {
     this.buttons.addPosition = $('<button id="add_position">Добавить карту</button>').button().appendTo(this.toolbar);
     this.buttons.removeCards = $('<button id="add_position">Убрать примеры</button>').button().appendTo(this.toolbar);
     this.buttons.newSpread = $('<button id="new_spread">Очистить поле</button>').button().appendTo(this.toolbar);
-    this.buttons.getHTML = $('<button id="save_spread">Получить HTML</button>').button().appendTo(this.toolbar);
     this.toolbar.append($('<hr />'));
     
     this.toolbar.append($('<label for="position_size">Карты:</label>'));
@@ -418,14 +412,4 @@ Editor.prototype.setPositionSize = function(newSize) {
  */
 Editor.prototype.setupDialog = function(data) {
     this.positionDialog.data(data).trigger('dialogreload').dialog("open");
-};
-
-/**
- * Loads the exported HTML content into the textarea specially made for that
- */
-Editor.prototype.showExport = function() {
-    this.exportContainer.css({
-	'display': 'block'
-    });
-    this.exportContainer.find('textarea#export').text(this.exportHTML());
 };

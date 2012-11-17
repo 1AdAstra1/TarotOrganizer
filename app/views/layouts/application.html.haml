@@ -22,5 +22,12 @@
                       %span= site_description
             %div#menu.menu.section
               =render "global/menu"
-          =yield
+          %div#content-wrapper
+            %div#main-wrapper 
+              %div#main-t
+              %div#main.section
+                %div.widget
+                  =yield
+            %div#sidebar-wrapper
+            %div.clear
     %div#footer-wrapper

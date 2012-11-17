@@ -1,7 +1,12 @@
-%h1= 'Редактировать клиента: ' + @client.name
-
-= render 'form'
-
-= link_to 'Вернуться к просмотру клиента', @client
-\|
-= link_to 'Вернуться к списку клиентов', clients_path
+%div.post
+  %h3.entry-title
+    Редактировать клиента: 
+    %br
+    = @client.name
+  
+  %div.post-body
+    = render 'form'
+  %div.post-footer
+    = link_to 'Вернуться к просмотру клиента', @client
+    \|
+    = link_to 'Вернуться к списку клиентов', clients_path

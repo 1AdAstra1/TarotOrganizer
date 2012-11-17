@@ -1,4 +1,4 @@
-%h1 Список клиентов
+= button_to 'Добавить клиента', new_client_path, :method => :get
 
 = form_tag clients_path, :method => :get do
   Фильтр: 
@@ -8,24 +8,20 @@
   
 %a#drop_filters{:href => clients_path({:drop_filters => '1'})} Сбросить фильтры
 
-%table#clients
-  %thead
-    %tr
-      %th{:class => (@sort_column == 'name'? 'sort_column' : '')} 
-        %a#name_header{:href => sort_clients_path('name')} Имя
-      %th Комментарий
-      %th
-      %th
-      %th
-  %tbody
-    - @clients.each do |client|
-      %tr
-        %td= link_to client.name, client
-        %td= client.comment
-        %td= link_to 'Редактировать', edit_client_path(client), :id => 'edit_client_' + client.id.to_s
-        %td= button_to 'Удалить', client, :method => :delete, :confirm => 'Вы уверены, что хотите удалить этого клиента из базы?', :id => 'delete_client_' + client.id.to_s
+- @clients.each do |client|
+  %div.post-short
+    %div.post-body
+      %h3.entry-title= link_to client.name, client
+      %h2.date-header
+        Начало работы:
+        = client.start_date
+        , раскладов:
+        = client.spreads.length
+      %div.client-comment   
+        = client.comment
+    %div.post-footer
+      = link_to 'Редактировать', edit_client_path(client), :id => 'edit_client_' + client.id.to_s
+      \| 
+      = link_to 'Удалить', client, :method => :delete, :confirm => 'Вы уверены, что хотите удалить этого клиента из базы?', :id => 'delete_client_' + client.id.to_s
 
-%br
 
-= link_to 'Добавить клиента', new_client_path
-= link_to 'Выйти из системы', destroy_user_session_path, :method => :delete

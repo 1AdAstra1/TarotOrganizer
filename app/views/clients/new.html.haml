@@ -1,5 +1,8 @@
-%h1 Добавить нового клиента
+%div.post
+  %h3.entry-title Добавить клиента
 
-= render 'form'
+  %div.post-body
+    = render 'form'
 
-= link_to 'Назад к списку клиентов', clients_path
+  %div.post-footer
+    = link_to 'Назад к списку клиентов', clients_path

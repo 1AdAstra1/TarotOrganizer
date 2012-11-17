@@ -1,28 +1,28 @@
-%h1= @client.name
-
-%p#notice= notice
-
-%p
-  %strong= t("helpers.label.client.start_date") + ':'
-  = @client.start_date
-
-%p
-  %strong= t("helpers.label.client.comment") + ':'
-  %br
-  = raw @client.print_comment
+%div.post
+  %h3.entry-title= @client.name
+  %h2.date-header
+    Начало работы:
+    = @client.start_date
   
-- if(@client.spreads.length == 0) then
-  %p Для этого клиента пока не добавлены расклады.
-- else
-  %h3 Расклады:
-  %div#client_spreads
-  - @client.spreads.each do |spread|
-    %p
-      = link_to spread.date.to_s + ':', client_spread_path(@client, spread) 
-      = spread.name
-
-= link_to 'Редактировать', edit_client_path(@client)
-\|
-= link_to 'Создать расклад для этого клиента', new_client_spread_path(@client), {:id => 'add_spread_link'}
-\|
-= link_to 'Вернуться к списку клиентов', clients_path
+  %p#notice= notice
+  %div.post-body
+    %div.client-comment
+      = raw @client.print_comment
+      
+    - if(@client.spreads.length == 0) then
+      %p Для этого клиента пока не добавлены расклады.
+    - else
+      %h2 Расклады:
+      %div#client_spreads
+        %ol
+          - @client.spreads.each do |spread|
+            %li
+              = link_to spread.date.to_s + ':', client_spread_path(@client, spread) 
+              = spread.name
+          
+  %div.post-footer
+    = link_to 'Редактировать', edit_client_path(@client)
+    \|
+    = link_to 'Создать расклад для этого клиента', new_client_spread_path(@client), {:id => 'add_spread_link'}
+    \|
+    = link_to 'Вернуться к списку клиентов', clients_path

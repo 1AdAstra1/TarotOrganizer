@@ -164,14 +164,15 @@ div.properties-area label {
 }
 
 div#buttons {
-    background-color: #999;
+    background-color: #58371E;
     padding: 7px;
-    border: 1px solid #666;
-    width: 736px;
+    border: 1px solid #B45F06;
+    color: #fff; 
 }
 
 div#buttons label {
 	display: inline;
+	margin-right: 10px;
 }
 
 div#buttons button, div#buttons select {
