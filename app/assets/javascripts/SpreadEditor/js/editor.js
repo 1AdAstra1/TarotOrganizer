@@ -138,8 +138,8 @@ Editor.prototype.createDialog = function() {
     this.positionDialog.appendTo(this.container);
     this.positionDialog.dialog({
 	autoOpen: false,
-	height: 350,
-	width: 250,
+	height: 410,
+	width: 280,
 	modal: false,
 	show: 'fade',
 	hide: 'fade',
@@ -185,7 +185,7 @@ Editor.prototype.createToolbar = function() {
 		$('<option value="' + id + '">' + params.name + '</option>').appendTo(this.buttons.deck);
     }, this)); 
     this.activeDeck = this.buttons.deck.val();
-    
+    this.toolbar.append($('<br />'));
     this.toolbar.append($('<label for="grid">Сетка:</label>'));
     this.buttons.grid = $('<select id="grid"></select>').appendTo(this.toolbar);
     $('<option value="">Нет</option>').appendTo(this.buttons.grid);

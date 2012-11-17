@@ -164,15 +164,15 @@ div.properties-area label {
 }
 
 div#buttons {
-    background-color: #58371E;
+    background-color: #D8C2A2;
     padding: 7px;
     border: 1px solid #B45F06;
-    color: #fff; 
+    font-size: 13px;
 }
 
 div#buttons label {
 	display: inline;
-	margin-right: 10px;
+	margin-right: 7px;
 }
 
 div#buttons button, div#buttons select {
@@ -198,4 +198,8 @@ div#descriptions-area strong {
 
 div#descriptions-area ol {
     list-style-position: inside;
+}
+
+div.ui-dialog {
+	font-size: 13px;
 }
