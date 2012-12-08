@@ -1,5 +1,6 @@
 class SpreadImage
   require 'RMagick'
+  require 'digest/md5'
   include Magick
   attr_reader :path, :localpath
 
@@ -9,7 +10,7 @@ class SpreadImage
     @path = ''
     @format = 'png'
     @dir = 'tmp'
-    @filename = 'spread_' + @id.to_s + '.' + @format
+    @filename = 'spread_' + Digest::MD5.hexdigest(@id.to_s + @structure['width'] + @structure['height']) + '.' + @format
     @path = ''
 
     @localdir = Rails.root.join(@dir).to_s

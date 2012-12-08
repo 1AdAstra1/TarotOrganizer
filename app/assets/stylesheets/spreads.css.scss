@@ -1,3 +1,20 @@
 // Place all the styles related to the Spreads controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+table.spreads-table th, table.spreads-table td {
+  padding: 5px;
+  border-bottom: 1px solid black;
+}
+
+table.spreads-table tr {
+  
+}
+
+th.col-client {
+  width: 150px;
+}
+
+th.col-spread {
+  width: 300px;
+}

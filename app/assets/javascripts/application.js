@@ -6,3 +6,7 @@
 //
 //= require_tree .
 //=require jquery_ujs
+
+$(document).ready(function () {      
+	$('button, input[type=submit]').button();
+  });

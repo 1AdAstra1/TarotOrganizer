@@ -1,27 +1,18 @@
-%h1 Listing spreads
+%h3.entry-title Все расклады
 
-%table
+%table.spreads-table
   %tr
-    %th Client
-    %th Name
-    %th Date
-    %th Structure
-    %th Comment
-    %th Feedback
-    %th
-    %th
-    %th
+    %th.col-client Клиент
+    %th.col-spread Расклад
+    %th.col-date Дата
+    %th.col-links
 
   - @spreads.each do |spread|
     %tr
-      %td= spread.client_id
-      %td= spread.name
+      %td= link_to spread.client.name, spread.client
+      %td= link_to spread.name, spread
       %td= spread.date
-      %td= spread.structure
-      %td= spread.comment
-      %td= spread.feedback
-      %td= link_to 'Show', spread
-      %td= link_to 'Edit', edit_spread_path(spread)
-      %td= link_to 'Destroy', spread, :confirm => 'Are you sure?', :method => :delete
-
-%br
+      %td
+        = link_to 'Редактировать', edit_spread_path(spread)
+        %br
+        = link_to 'Удалить', spread, :confirm => 'Вы действительно хотите удалить этот расклад?', :method => :delete

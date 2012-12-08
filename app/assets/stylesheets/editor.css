@@ -15,7 +15,7 @@ root {
 }
 
 #editor-area {
-    width: 750px;
+    width: 536px;
     height: 450px;
     border: 1px solid #000;
     background-color: #496d49;
@@ -186,7 +186,7 @@ div#buttons hr {
 }
 
 div#descriptions-area {
-    width: 750px;
+    width: 536px;
     background-color: #fff;
     border: 1px solid #000;
     padding: 10px 0px;
