@@ -16,3 +16,4 @@
         = link_to 'Редактировать', edit_spread_path(spread)
         %br
         = link_to 'Удалить', spread, :confirm => 'Вы действительно хотите удалить этот расклад?', :method => :delete
+= paginate @spreads

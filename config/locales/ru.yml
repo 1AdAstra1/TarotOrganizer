@@ -117,6 +117,12 @@ ru:
       month: Месяц
       second: Секунд
       year: Год
+  views:
+    pagination:
+      previous: &#8592;
+      next: &#8594;
+      first: &#8656;
+      last: &#8658;
   errors: &errors
     format: ! '%{attribute} %{message}'
     messages:
@@ -125,7 +131,7 @@ ru:
       confirmation: не совпадает с подтверждением
       empty: не может быть пустым
       equal_to: может иметь лишь значение, равное %{count}
-      even: может иметь лишь нечетное значение
+      even: может иметь лишь нечетное значение  
       exclusion: имеет зарезервированное значение
       greater_than: может иметь значение большее %{count}
       greater_than_or_equal_to: может иметь значение большее или равное %{count}

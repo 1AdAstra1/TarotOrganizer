@@ -52,3 +52,4 @@ gem "aws-sdk"
 
 gem "babelphish"
 gem "uploader"
+gem "kaminari"

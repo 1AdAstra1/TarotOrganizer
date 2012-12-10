@@ -24,9 +24,9 @@ class ClientsController < ApplicationController
     
     if  (params[:filter] != nil) and (!params[:filter]['name'].empty?) then
       session[:filter_name] = params[:filter]['name']
-      @clients = Client.search_in_name(current_user.id, params[:filter]['name']).order(query_params[:order])
+      @clients = Client.search_in_name(current_user.id, params[:filter]['name']).order(query_params[:order]).page(params[:page])
     else
-      @clients = Client.find_user_items(current_user.id, {}).order(query_params[:order])
+      @clients = Client.find_user_items(current_user.id, {}).order(query_params[:order]).page(params[:page])
     end
 
     respond_to do |format|

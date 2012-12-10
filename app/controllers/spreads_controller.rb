@@ -3,7 +3,7 @@ class SpreadsController < ApplicationController
   # GET /spreads
   # GET /spreads.json
   def index
-    @spreads = Spread.find_user_items(current_user.id)
+    @spreads = Spread.find_user_items(current_user.id).page(params[:page])
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @spreads }

@@ -25,4 +25,5 @@
       \| 
       = link_to 'Удалить', client, :method => :delete, :confirm => 'Вы уверены, что хотите удалить этого клиента из базы?', :id => 'delete_client_' + client.id.to_s
 
+= paginate @clients
 

@@ -291,14 +291,18 @@ font-style:italic;
 .comment-form{
 padding-left:45px;
 }
-#blog-pager {
+nav.pagination {
 text-align:center;
+margin: 15px 0px 15px 0px;
 }
-#blog-pager-newer-link {
+nav.pagination span.prev, nav.pagination span.first {
 float:left;
 }
-#blog-pager-older-link {
+nav.pagination span.next, nav.pagination span.last {
 float:right;
+}
+nav.pagination span.page {
+	margin: 0px 3px 0px 3px;
 }
 .feed-links {
 clear: both;
