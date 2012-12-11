@@ -1,13 +1,13 @@
-= button_to 'Добавить клиента', new_client_path, :method => :get
-
 %div#clients_filter
   = form_tag clients_path, :method => :get do
+    Сортировать по:
+    = select_tag 'sort', options_for_select({'порядку добавления' => 'id', 'имени' => 'name', 'дате начала работы' => 'start_date'}, @sort_column)
+    %br
     Фильтр: 
     = text_field :filter, :name
-    = hidden_field_tag 'sort', @sort_column
     = submit_tag 'Применить', :id => 'filter_apply'
-  
-= button_to 'Сбросить фильтры', clients_path({:drop_filters => '1'})
+  = link_to 'Сбросить фильтры', clients_path({:drop_filters => '1'}), :method => :get
+= button_to 'Добавить клиента', new_client_path, :method => :get, :id => 'add_client_button'
 
 - @clients.each do |client|
   %div.post-short
@@ -24,6 +24,5 @@
       = link_to 'Редактировать', edit_client_path(client), :id => 'edit_client_' + client.id.to_s
       \| 
       = link_to 'Удалить', client, :method => :delete, :confirm => 'Вы уверены, что хотите удалить этого клиента?', :id => 'delete_client_' + client.id.to_s
-
 = paginate @clients
 

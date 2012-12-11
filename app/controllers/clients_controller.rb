@@ -6,6 +6,7 @@ class ClientsController < ApplicationController
   def index
     if params[:drop_filters] == '1' then
       session.clear
+      redirect_to clients_path and return
     end
     query_params = {}
     

@@ -163,7 +163,7 @@ div.properties-area label {
     margin-top: 8px;
 }
 
-div#buttons {
+div#buttons, div#clients_filter {
     background-color: #D8C2A2;
     padding: 7px;
     border: 1px solid #B45F06;
