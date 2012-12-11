@@ -364,7 +364,7 @@ Editor.prototype.reloadDialog = function() {
  */
 Editor.prototype.removeCards = function() {
     if(this.spread.hasPositions()) {
-	this.confirm('Вы действительно хотите очистить все примеры заполнения позиций картами?', function() {
+	this.confirm('Вы действительно хотите убрать все карты с позиций?', function() {
 	    this.spread.removeCards();
 	}, this);
     }

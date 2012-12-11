@@ -1,3 +1,4 @@
+#encoding: utf-8
 class SpreadsController < ApplicationController
   before_filter :authenticate_user!
   # GET /spreads
@@ -47,7 +48,7 @@ class SpreadsController < ApplicationController
     @all_clients = Client.all.collect {|item| [item.name, item.id]}
     respond_to do |format|
       if @spread.save
-        format.html { redirect_to @spread, notice: 'Spread was successfully created.' }
+        format.html { redirect_to @spread, notice: "Расклад \"#{@spread.name}\" успешно добавлен" }
         format.json { render json: @spread, status: :created, location: @spread }
       else
         format.html { render action: "new" }
@@ -63,7 +64,7 @@ class SpreadsController < ApplicationController
     @spread.client = Client.find_by_id(params[:spread][:client_id])
     respond_to do |format|
       if @spread.update_attributes(params[:spread])
-        format.html { redirect_to @spread, notice: 'Spread was successfully updated.' }
+        format.html { redirect_to @spread, notice: "Расклад \"#{@spread.name}\" успешно отредактирован" }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

@@ -1,3 +1,4 @@
+#encoding: utf-8
 class ClientsController < ApplicationController
   before_filter :authenticate_user!
   # GET /clients
@@ -70,7 +71,7 @@ class ClientsController < ApplicationController
 
     respond_to do |format|
       if @client.save
-        format.html { redirect_to @client, notice: 'Client was successfully created.' }
+        format.html { redirect_to @client, notice: "Клиент #{@client.name} успешно добавлен" }
         format.json { render json: @client, status: :created, location: @client }
       else
         format.html { render action: "new" }
@@ -86,7 +87,7 @@ class ClientsController < ApplicationController
 
     respond_to do |format|
       if @client.update_attributes(params[:client])
-        format.html { redirect_to @client, notice: 'Client was successfully updated.' }
+        format.html { redirect_to @client, notice: "Клиент #{@client.name} успешно отредактирован" }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

@@ -7,7 +7,7 @@
     = hidden_field_tag 'sort', @sort_column
     = submit_tag 'Применить', :id => 'filter_apply'
   
-%a#drop_filters{:href => clients_path({:drop_filters => '1'})} Сбросить фильтры
+= button_to 'Сбросить фильтры', clients_path({:drop_filters => '1'})
 
 - @clients.each do |client|
   %div.post-short
@@ -23,7 +23,7 @@
     %div.post-footer
       = link_to 'Редактировать', edit_client_path(client), :id => 'edit_client_' + client.id.to_s
       \| 
-      = link_to 'Удалить', client, :method => :delete, :confirm => 'Вы уверены, что хотите удалить этого клиента из базы?', :id => 'delete_client_' + client.id.to_s
+      = link_to 'Удалить', client, :method => :delete, :confirm => 'Вы уверены, что хотите удалить этого клиента?', :id => 'delete_client_' + client.id.to_s
 
 = paginate @clients
 
