@@ -1,6 +1,7 @@
 class Spread < ActiveRecord::Base
   require 'json'
   extend ModelsCommon
+  include EntitiesCommon
   belongs_to :client
   belongs_to :user
   validates_with SpreadValidator

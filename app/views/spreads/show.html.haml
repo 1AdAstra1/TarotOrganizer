@@ -1,41 +1,43 @@
-%h1= @spread.name
+%div.post
+  %h3.entry-title= @spread.name
+  %h2.date-header
+    = link_to @spread.client.name, client_path(@spread.client)
+    ,
+    = @spread.date
+  %p#notice= notice
 
-%p#notice= notice
-
-%p
-  %strong=t("helpers.label.spread.client_id") + ':'
-  = link_to @spread.client.name, client_path(@spread.client)
-%p
-  %strong=t("helpers.label.spread.date") + ':'
-  = @spread.date
-%p
-  %img{:src => @spread.image}
-%div#descriptions
-  %ol
-    -@structure['positions'].each do |position|
-      %li
-        %strong=position['description']
-        -if position['card'] then
-          \:
-          %span.position-card=position['card']['name']
-          \-
-          %span.position-value=position['card']['value']
-%p
-  %strong=t("helpers.label.spread.comment") + ':'
-  = @spread.comment
-%p
-  %strong=t("helpers.label.spread.feedback") + ':'
-  = @spread.feedback
-
-%div#export-buttons
-  %button{:onclick => "loadExport('html', '#{@spread.image}')"}
-    Получить HTML-код
-  %button{:onclick => "loadExport('bbcode', '#{@spread.image}')"}
-    Получить BBCode
-%div#export
-
-= link_to 'Редактировать расклад', edit_spread_path(@spread)
-\|
-= link_to 'Все расклады для этого клиента', client_path(@spread.client)
-\|
-= link_to 'Список всех раскладов', spreads_path
+  %p
+    %img.spread-image{:src => @spread.image}
+  %div#descriptions.post-body
+    %ol
+      -@structure['positions'].each do |position|
+        %li
+          %strong=position['description']
+          -if position['card'] then
+            \:
+            %span.position-card=position['card']['name']
+            \-
+            %span.position-value=position['card']['value']
+  %div.post-body
+    %p
+      %strong=t("helpers.label.spread.comment") + ':'
+    %p
+      = raw @spread.print_comment
+  %div.post-body
+    %p
+      %strong=t("helpers.label.spread.feedback") + ':'
+    %p
+      = raw @spread.print_feedback
+  
+  %div#export-buttons
+    %button{:onclick => "loadExport('html', '#{@spread.image}')"}
+      Получить HTML-код
+    %button{:onclick => "loadExport('bbcode', '#{@spread.image}')"}
+      Получить BBCode
+  %div#export
+  %div.post-footer
+    = link_to 'Редактировать расклад', edit_spread_path(@spread)
+    \|
+    = link_to 'Все расклады для этого клиента', client_path(@spread.client)
+    \|
+    = link_to 'Список всех раскладов', spreads_path
