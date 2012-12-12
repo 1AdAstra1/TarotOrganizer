@@ -9,3 +9,7 @@ input.add_button {
   clear: both;
   margin-top: 10px;
 }
+
+div.remember_user label {
+	display: inline;
+}

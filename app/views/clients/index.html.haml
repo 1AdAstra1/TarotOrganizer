@@ -27,8 +27,9 @@
 = paginate @clients
 
 if(@clients.length == 0)
-  %div.post-body 
-    В систему пока не добавлено ни одного клиента. Возможно, вы 
-    =link_to 'хотите это сделать?', new_client_path
+  %div.post
+    %div.post-body 
+      В систему пока не добавлено ни одного клиента. Возможно, вы 
+      =link_to 'хотите это сделать?', new_client_path
   
 

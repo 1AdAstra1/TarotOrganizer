@@ -19,7 +19,8 @@
           = link_to 'Удалить', spread, :confirm => 'Вы действительно хотите удалить этот расклад?', :method => :delete
   = paginate @spreads
 -else
-  %div.post-body 
-    Ещё не добавлено ни одного расклада. Возможно, вы 
-    =link_to 'хотите это сделать?', new_spread_path
+  %div.post
+    %div.post-body 
+      Ещё не добавлено ни одного расклада. Возможно, вы 
+      = link_to 'хотите это сделать?', new_spread_path
   

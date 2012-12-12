@@ -1,11 +1,14 @@
-%h1 
-  Редактировать расклад:
-  =@spread.name
+%div.post
+  %h3.entry-title
+    Редактировать расклад:
+    %br
+    =@spread.name
 
-= render 'form'
+  = render 'form'
 
-= link_to 'Просмотр расклада', @spread
-\|
-= link_to 'Все расклады для этого клиента', client_path(@spread.client)
-\|
-= link_to 'Список всех раскладов', spreads_path
+  %div.post-footer
+    = link_to 'Просмотр расклада', @spread
+    \|
+    = link_to 'Все расклады для этого клиента', client_path(@spread.client)
+    \|
+    = link_to 'Список всех раскладов', spreads_path

@@ -1,11 +1,12 @@
-%h2 Повторная отправка подтверждения
-
-= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f|
-  = devise_error_messages! 
-  %div
-    = f.label :email
-  = f.email_field :email
-
-  %div= f.submit "Выслать письмо для подтверждения"
-
-= render "devise/shared/links"
+%h3.entry-title  Повторная отправка подтверждения
+.post
+  = form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f|
+    = devise_error_messages! 
+    .post-body
+      %div
+        = f.label :email
+        = f.email_field :email
+  
+    %div= f.submit "Выслать письмо для подтверждения"
+  .post-footer
+    = render "devise/shared/links"

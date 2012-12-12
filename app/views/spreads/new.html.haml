@@ -1,10 +1,11 @@
-%h1 Создать новый расклад
-
--if (@all_clients.length > 0)
-  = render 'form'
--else
-  %p
-    Прежде чем добавлять расклады, вам необходимо
-    =link_to 'создать хотя бы одного клиента.', new_client_path
-
-= link_to 'К списку раскладов', spreads_path
+%div.post
+  %h3.entry-title Создать новый расклад
+  
+  -if (@all_clients.length > 0)
+    = render 'form'
+  -else
+    %p
+      Прежде чем добавлять расклады, вам необходимо
+      =link_to 'создать хотя бы одного клиента.', new_client_path
+  %div.post-footer
+    = link_to 'К списку раскладов', spreads_path

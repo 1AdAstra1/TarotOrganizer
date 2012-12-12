@@ -1,11 +1,12 @@
-%h2 Восстановление пароля
-
-= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| 
-  = devise_error_messages! 
-  %div
-    = f.label :email
-  = f.email_field :email
-
-  %div= f.submit "Выслать письмо для восстановления"
+%h3.entry-title  Восстановление пароля
+.post
+  = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| 
+    = devise_error_messages! 
+    .post-body
+      %div
+        = f.label :email
+        = f.email_field :email
   
-= render "devise/shared/links"
+    %div= f.submit "Выслать письмо для восстановления"
+  .post-footer
+    = render "devise/shared/links"
