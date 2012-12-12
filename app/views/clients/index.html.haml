@@ -7,7 +7,7 @@
     = text_field :filter, :name
     = submit_tag 'Применить', :id => 'filter_apply'
   = link_to 'Сбросить фильтры', clients_path({:drop_filters => '1'}), :method => :get
-= button_to 'Добавить клиента', new_client_path, :method => :get, :id => 'add_client_button'
+= button_to 'Добавить клиента', new_client_path, :method => :get, :class => 'add_button'
 
 - @clients.each do |client|
   %div.post-short

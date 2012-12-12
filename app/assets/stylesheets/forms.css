@@ -3,3 +3,9 @@ textarea {
 	min-height: 100px;
 	z-index: 100500;
 }
+
+input.add_button {
+  float: right;
+  clear: both;
+  margin-top: 10px;
+}
