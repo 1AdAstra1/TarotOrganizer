@@ -26,3 +26,9 @@
       = link_to 'Удалить', client, :method => :delete, :confirm => 'Вы уверены, что хотите удалить этого клиента?', :id => 'delete_client_' + client.id.to_s
 = paginate @clients
 
+if(@clients.length == 0)
+  %div.post-body 
+    В систему пока не добавлено ни одного клиента. Возможно, вы 
+    =link_to 'хотите это сделать?', new_client_path
+  
+

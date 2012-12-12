@@ -1,19 +1,25 @@
 %h3.entry-title Все расклады
 = button_to 'Создать новый расклад', new_spread_path, :method => :get, :class => 'add_button'
-%table.spreads-table
-  %tr
-    %th.col-client Клиент
-    %th.col-spread Расклад
-    %th.col-date Дата
-    %th.col-links
-
-  - @spreads.each do |spread|
+-if (@spreads.length > 0)
+  %table.spreads-table
     %tr
-      %td= link_to spread.client.name, spread.client
-      %td= link_to spread.name, spread
-      %td= spread.date
-      %td
-        = link_to 'Редактировать', edit_spread_path(spread)
-        %br
-        = link_to 'Удалить', spread, :confirm => 'Вы действительно хотите удалить этот расклад?', :method => :delete
-= paginate @spreads
+      %th.col-client Клиент
+      %th.col-spread Расклад
+      %th.col-date Дата
+      %th.col-links
+  
+    - @spreads.each do |spread|
+      %tr
+        %td= link_to spread.client.name, spread.client
+        %td= link_to spread.name, spread
+        %td= spread.date
+        %td
+          = link_to 'Редактировать', edit_spread_path(spread)
+          %br
+          = link_to 'Удалить', spread, :confirm => 'Вы действительно хотите удалить этот расклад?', :method => :delete
+  = paginate @spreads
+-else
+  %div.post-body 
+    Ещё не добавлено ни одного расклада. Возможно, вы 
+    =link_to 'хотите это сделать?', new_spread_path
+  
