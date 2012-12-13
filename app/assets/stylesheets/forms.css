@@ -8,6 +8,7 @@ input.add_button {
   float: right;
   clear: both;
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 div.remember_user label {
