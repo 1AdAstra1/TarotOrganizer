@@ -4,12 +4,12 @@ var getSpreadHTML = function(imageUrl) {
     spreadImage = $('<img />').attr({
 		'src' : imageUrl
     }),
-    descriptionsExport = $('#descriptions').clone().removeAttr('id');
+    descriptionsExport = $('#descriptions').clone().removeAttr('id').removeAttr('class');
     innerWrapper.append(spreadImage);
     descriptionsExport.find('span').removeAttr('class');
     descriptionsExport.appendTo(wrapper);
 
-    return wrapper.html().replace(/(\r\n|\n|\r)/gm, "");
+    return wrapper.html().replace(/(\r\n|\n|\r)/gm, "").replace(/([ \t])[ \t]+/gm, "$1");
 };
 
 var getBBCode = function(imageUrl) {
@@ -17,7 +17,7 @@ var getBBCode = function(imageUrl) {
 	bbcode = source_html.replace(/<img src="([^"]+)"\s*(\/)?>/, "[img]$1[/img]")
 						.replace(/<ol>/, "[list=1]").replace(/<\/ol>/, "[/list]")
 						.replace(/<(\/)?strong>/gm, "[$1b]")
-						.replace(/<li>([^<]+)<\/li>/gm, "[*] $1");
+						.replace(/<li>([^<]+)<\/li>/gm, "[*]$1[/*]");
 	return bbcode;	
 }
 
