@@ -72,6 +72,12 @@ Editor.prototype.addSpreadEvents = function() {
 		this.removeCards();
     }, this));
     
+    this.buttons.randomCard.unbind('click');
+    this.buttons.randomCard.click($.proxy(function(e) {
+    	e.preventDefault();
+		this.spread.addPosition().addRandomCard();
+    }, this));
+    
     this.buttons.positionSize.change($.proxy(function(e) {
     	e.preventDefault();
 		this.setPositionSize(this.buttons.positionSize.val());
@@ -168,8 +174,9 @@ Editor.prototype.createToolbar = function() {
     this.buttons = {};
     
     this.buttons.addPosition = $('<button id="add_position">Добавить карту</button>').button().appendTo(this.toolbar);
-    this.buttons.removeCards = $('<button id="add_position">Убрать примеры</button>').button().appendTo(this.toolbar);
-    this.buttons.newSpread = $('<button id="new_spread">Очистить поле</button>').button().appendTo(this.toolbar);
+    this.buttons.removeCards = $('<button id="add_position">Убрать значения</button>').button().appendTo(this.toolbar);
+    this.buttons.newSpread = $('<button id="new_spread">Удалить всё</button>').button().appendTo(this.toolbar);
+    this.buttons.randomCard = $('<button id="random_card">Случайная карта</button>').button().appendTo(this.toolbar);
     this.toolbar.append($('<hr />'));
     
     this.toolbar.append($('<label for="position_size">Карты:</label>'));

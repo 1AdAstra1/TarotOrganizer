@@ -37,10 +37,12 @@ var Position = function(spread, savedPosition) {
 			top : savedPosition.top,
 			left : savedPosition.left
 		});
-		if(savedPosition.number.mode === 'horizontal') this.rotate();
+		if(savedPosition.number.mode === 'horizontal')
+			this.rotate();
 		if(savedPosition.card) {
 			this.card = new Card(me.editor.getActiveDeck(), savedPosition.card.id, savedPosition.card.value, this.cardElement, this.valueElement);
-			if(savedPosition.card.reverted === true) this.card.setUpsideDown();
+			if(savedPosition.card.reverted === true)
+				this.card.setUpsideDown();
 		}
 	}
 };
@@ -72,6 +74,29 @@ Position.prototype.addDrag = function() {
 		scroll : false
 	});
 };
+
+/**
+ * Adds a random card to this position
+ */
+Position.prototype.addRandomCard = function() {
+	//cross-browser workaround
+	var me = this,
+	getKeys = function(obj) {
+		var keys = [];
+		for(var key in obj) {
+			if(obj.hasOwnProperty(key)) {
+				keys.push(key);
+			}
+		}
+		return keys;
+	},
+	randomCard = getKeys(me.editor.settings.decks[me.editor.getActiveDeck()].cards)[Math.floor(Math.random()*78)],
+	reverted = Math.round(Math.random());
+	this.card = new Card(me.editor.getActiveDeck(), randomCard, '', this.cardElement, this.valueElement);
+	if(reverted === 1) {
+		this.card.setUpsideDown();
+	}
+}
 /**
  * Adds a handler for the right click event, removes the default context menu
  */

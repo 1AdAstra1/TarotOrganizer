@@ -22,7 +22,9 @@ var Spread = function(editor, structure) {
  * Adds a new position
  */
 Spread.prototype.addPosition = function(savedPosition) {
-	this.positions[this.getLastNumber()] = new Position(this, savedPosition);
+	var newPosition = new Position(this, savedPosition);
+	this.positions[this.getLastNumber()] = newPosition;
+	return newPosition;
 };
 /**
  * Removes the spread's positions before removing the spread itself

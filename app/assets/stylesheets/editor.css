@@ -179,6 +179,7 @@ div#buttons label {
 
 div#buttons button, div#buttons select {
     margin-right: 5px;
+    margin-bottom: 5px;
 }
 
 div#buttons hr {
