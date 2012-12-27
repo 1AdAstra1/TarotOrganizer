@@ -20,7 +20,6 @@ var getSpreadHTML = function(imageUrl) {
 
 var getBBCode = function(imageUrl) {
 	this.dom = new getExportDOM(imageUrl);
-	console.log(this.dom.copyright);
 	this.dom.copyright.remove();
 	var source_html = this.dom.getHTML().replace(/<(\/)?div>/gm, "").replace(/<(\/)?span>/gm, ""),
 	bbcode = source_html.replace(/<img src="([^"]+)"\s*[^>]*>/, "[img]$1[/img]")
