@@ -160,7 +160,6 @@ div.properties-area input[type=checkbox] {
 }
 
 div.properties-area label {
-    float: left;
     clear: right;
     margin-top: 8px;
 }
