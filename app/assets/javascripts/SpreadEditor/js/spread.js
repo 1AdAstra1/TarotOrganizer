@@ -1,6 +1,6 @@
 /*
  * The whole spread
- */'use strict';
+ */
 /**
  * Spread object prototype constructor
  */

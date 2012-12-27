@@ -1,7 +1,6 @@
 /* 
  * Spread configuration
  */
-'use strict';
 
 var EditorSettings = {
     siteURL : '',

@@ -1,6 +1,6 @@
 /*
  * One particular position in the spread
- */"use strict";
+ */
 
 /**
  * Position object prototype constructor

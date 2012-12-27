@@ -1,7 +1,6 @@
 /* 
  * A concrete card that fills the position
  */
-'use strict';
 
 /**
  * Card object prototype constructor

@@ -1,6 +1,6 @@
 /*
  * The whole editor
- */"use strict";
+ */
 
 /**
  * Editor object prototype constructor
