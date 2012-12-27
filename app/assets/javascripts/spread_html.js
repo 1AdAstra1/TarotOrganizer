@@ -23,7 +23,7 @@ var getBBCode = function(imageUrl) {
 	console.log(this.dom.copyright);
 	this.dom.copyright.remove();
 	var source_html = this.dom.getHTML().replace(/<(\/)?div>/gm, "").replace(/<(\/)?span>/gm, ""),
-	bbcode = source_html.replace(/<img src="([^"]+)"\s*(\/)?>/, "[img]$1[/img]")
+	bbcode = source_html.replace(/<img src="([^"]+)"\s*[^>]*>/, "[img]$1[/img]")
 						.replace(/<ol>/, "[list=1]").replace(/<\/ol>/, "[/list]")
 						.replace(/<(\/)?strong>/gm, "[$1b]")
 						.replace(/<li>([^<]+)<\/li>/gm, "[*]$1[/*]");
