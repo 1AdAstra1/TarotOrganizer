@@ -1,10 +1,11 @@
 #encoding: utf-8
 class SpreadsController < ApplicationController
   before_filter :authenticate_user!
+  load_and_authorize_resource
   # GET /spreads
   # GET /spreads.json
   def index
-    @spreads = Spread.find_user_items(current_user.id).page(params[:page])
+    @spreads = current_user.spreads.page(params[:page])
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @spreads }
@@ -14,7 +15,7 @@ class SpreadsController < ApplicationController
   # GET /spreads/1
   # GET /spreads/1.json
   def show
-    @spread = Spread.find_user_item(current_user.id, params[:id])
+    @spread = Spread.find(params[:id])
     @structure = JSON.parse(@spread.structure)
     respond_to do |format|
       format.html # show.html.erb
@@ -36,8 +37,8 @@ class SpreadsController < ApplicationController
 
   # GET /spreads/1/edit
   def edit
-    @spread = Spread.find_user_item(current_user.id, params[:id])
-    @all_clients = Client.find_user_items(current_user.id, {}).collect {|item| [item.name, item.id]}
+    @spread = Spread.find(params[:id])
+    @all_clients = current_user.clients.collect {|item| [item.name, item.id]}
   end
 
   # POST /spreads
@@ -60,7 +61,7 @@ class SpreadsController < ApplicationController
   # PUT /spreads/1
   # PUT /spreads/1.json
   def update
-    @spread = Spread.find_user_item(current_user.id, params[:id])
+    @spread = Spread.find(params[:id])
     @spread.client = Client.find_by_id(params[:spread][:client_id])
     respond_to do |format|
       if @spread.update_attributes(params[:spread])

@@ -1,5 +1,8 @@
 TarotOrganizer::Application.routes.draw do
 
+  resources :interpretations
+
+
   devise_for :users
 
   resources :clients do

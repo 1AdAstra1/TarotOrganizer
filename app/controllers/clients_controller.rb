@@ -1,6 +1,7 @@
 #encoding: utf-8
 class ClientsController < ApplicationController
   before_filter :authenticate_user!
+  load_and_authorize_resource
   # GET /clients
   # GET /clients.json
   def index
@@ -28,7 +29,7 @@ class ClientsController < ApplicationController
       session[:filter_name] = params[:filter]['name']
       @clients = Client.search_in_name(current_user.id, params[:filter]['name']).order(query_params[:order]).page(params[:page])
     else
-      @clients = Client.find_user_items(current_user.id, {}).order(query_params[:order]).page(params[:page])
+      @clients = current_user.clients.order(query_params[:order]).page(params[:page])
     end
 
     respond_to do |format|
@@ -40,7 +41,7 @@ class ClientsController < ApplicationController
   # GET /clients/1
   # GET /clients/1.json
   def show
-    @client = Client.find_user_item(current_user.id, params[:id])
+    @client = Client.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -62,7 +63,7 @@ class ClientsController < ApplicationController
 
   # GET /clients/1/edit
   def edit
-    @client = Client.find_user_item(current_user.id, params[:id])
+    @client = Client.find(params[:id])
   end
 
   # POST /clients
@@ -84,7 +85,7 @@ class ClientsController < ApplicationController
   # PUT /clients/1
   # PUT /clients/1.json
   def update
-    @client = Client.find_user_item(current_user.id, params[:id]) 
+    @client = Client.find(params[:id]) 
 
     respond_to do |format|
       if @client.update_attributes(params[:client])
@@ -100,7 +101,7 @@ class ClientsController < ApplicationController
   # DELETE /clients/1
   # DELETE /clients/1.json
   def destroy
-    @client = Client.find_user_item(current_user.id, params[:id])
+    @client = Client.find(params[:id])
     @client.destroy
 
     respond_to do |format|
