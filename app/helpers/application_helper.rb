@@ -1,6 +1,7 @@
+#encoding: utf-8
 module ApplicationHelper
   def resource_name
-    =>user
+    :user
   end
 
   def resource
@@ -8,7 +9,7 @@ module ApplicationHelper
   end
 
   def devise_mapping
-    @devise_mapping ||= Devise.mappings[=>user]
+    @devise_mapping ||= Devise.mappings[:user]
   end
   
   def common_deck_structure
