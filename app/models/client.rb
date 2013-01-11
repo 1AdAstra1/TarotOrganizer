@@ -1,5 +1,4 @@
 class Client < ActiveRecord::Base
-  extend ModelsCommon
   include EntitiesCommon
   has_many :spreads, :dependent => :destroy
   belongs_to :user
