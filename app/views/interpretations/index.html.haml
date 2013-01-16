@@ -1,21 +1,22 @@
-%h1 Listing interpretations
-
-%table
-  %tr
-    %th Text
-    %th Card code
-    %th
-    %th
-    %th
-
-  - @interpretations.each do |interpretation|
-    %tr
-      %td= interpretation.text
-      %td= interpretation.card_code
-      %td= link_to 'Show', interpretation
-      %td= link_to 'Edit', edit_interpretation_path(interpretation)
-      %td= link_to 'Destroy', interpretation, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Interpretation', new_interpretation_path
+%h3.entry-title Толкования карт
+%div.post
+  %div.post-body 
+    %table.spreads-table
+      %tr
+        %th Карта
+        %th.col-interpretation Толкование
+        %th
+    
+      - common_deck_structure.each do |card_code, card_name|
+        %tr
+          %td= card_name
+          - current_interpretation = @interpretations.detect {|interpretation| interpretation.card_code == card_code }
+          -if current_interpretation
+            %td= current_interpretation.text
+            %td
+              = link_to 'Редактировать', edit_interpretation_path(current_interpretation)
+              %br
+              = link_to 'Удалить', current_interpretation, method: :delete, data: { confirm: 'Вы действительно хотите удалить эту трактовку?' }
+          -else
+            %td (не добавлено)
+            %td= link_to 'Добавить', new_interpretation_path({:card_code => card_code})

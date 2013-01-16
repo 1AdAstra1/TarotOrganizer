@@ -258,6 +258,11 @@ ru:
       long: ! '%d %B %Y, %H:%M'
       short: ! '%d %b, %H:%M'
     pm: вечера
+    
+  interpretation_atts: &interpretation_atts
+    text: "Текст толкования"
+    card_code: "Машинный идентификатор карты"
+
   
   client_atts: &client_atts
     name: "Имя клиента"
@@ -275,12 +280,15 @@ ru:
   models: &models
     client: "Клиент"
     spread: "Расклад"
+    interpretation: "Толкование"
     
   attributes: &attributes
     client:
       <<: *client_atts
     spread:
       <<: *spread_atts
+    interpretation:
+      <<: *interpretation_atts
     user:
       email: Ваш E-mail
       password: Пароль

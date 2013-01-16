@@ -9,7 +9,9 @@ TarotOrganizer::Application.routes.draw do
     resources :spreads 
   end
   
-  resources :spreads
+  resources :spreads 
+  
+  match 'interpretations/by_code/:code' => 'interpretations#by_code'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

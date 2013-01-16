@@ -1,5 +1,8 @@
-%h1 New interpretation
+%div.post
+  %h3.entry-title= "Добавить толкование: #{@card_name}"
 
-= render 'form'
+  %div.post-body
+    = render 'form'
 
-= link_to 'Back', interpretations_path
+  %div.post-footer
+    = link_to 'Назад к списку', interpretations_path

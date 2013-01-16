@@ -1,7 +1,6 @@
-%h1 Editing interpretation
-
-= render 'form'
-
-= link_to 'Show', @interpretation
-\|
-= link_to 'Back', interpretations_path
+%div.post
+  %h3.entry-title= "Редактировать толкование: #{@card_name}"
+  %div.post-body
+    = render 'form'
+  %div.post-footer
+    = link_to 'Назад к списку', interpretations_path
