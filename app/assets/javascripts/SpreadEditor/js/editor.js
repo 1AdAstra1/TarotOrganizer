@@ -1,6 +1,6 @@
 /*
- * The whole editor
- */
+* The whole editor
+*/
 
 /**
  * Editor object prototype constructor
@@ -135,13 +135,14 @@ Editor.prototype.createDialog = function() {
 	this.positionDialog.cardSelect = $('<select name="card-id" class="card-id"></select>').appendTo(this.positionDialog);
 	this.positionDialog.upsideDown = $('<input type="checkbox" name="upside-down" class="upside-down" value="1" />').appendTo(this.positionDialog);
 	this.positionDialog.append($('<label for="upside-down">перевёрнутая</label>'));
-	this.positionDialog.append($('<label for="card-description">Значение выпавшей карты</label>'));
+	this.positionDialog.cardDescriptionLabel = $('<label for="card-description">Значение выпавшей карты (<a href="" id="interpretation-link">толкование от издательства &quot;Пряхи&quot;</a>?)</label>').appendTo(this.positionDialog);
+	this.positionDialog.interpretationLink = this.positionDialog.cardDescriptionLabel.find('a#interpretation-link').first();
 	this.positionDialog.valueField = $('<textarea name="card-description" class="text card-description ui-widget-content ui-corner-all"></textarea>').appendTo(this.positionDialog);
 	this.positionDialog.appendTo(this.container);
 	this.positionDialog.dialog({
 		autoOpen : false,
 		height : 410,
-		width : 280,
+		width : 450,
 		modal : false,
 		show : 'fade',
 		hide : 'fade',
@@ -159,7 +160,37 @@ Editor.prototype.createDialog = function() {
 			position.unselect();
 		}
 	});
+
+	this.positionDialog.interpretationLink.click($.proxy(function(e) {
+		e.preventDefault();
+		this.getCardInterpretation(this.positionDialog.cardSelect.val());
+	}, this));
 };
+
+Editor.prototype.createInterpretationDialog = function() {
+	var editorInstance = this;
+	this.interpretationDialog = $('<div class="interpretation-area"></div>');
+	this.interpretationDialog.valueLabel = $('<label for="interpretation"></label>').appendTo(this.interpretationDialog);;
+	this.interpretationDialog.valueField = $('<textarea name="interpretation" disabled="disabled" class="text interpretation ui-widget-content ui-corner-all"></textarea>').appendTo(this.interpretationDialog);
+	this.interpretationDialog.dialog({
+		autoOpen : false,
+		height : 420,
+		width : 380,
+		modal : false,
+		show : 'fade',
+		hide : 'fade',
+		title : 'Толкование карты',
+		buttons : {
+			"Скопировать в выпавшую карту" : function() {
+				editorInstance.positionDialog.valueField.val(editorInstance.interpretationDialog.valueField.val());
+				$(this).dialog("close");
+			},
+			"Отмена" : function() {
+				$(this).dialog("close");
+			}
+		}
+	});
+}
 /**
  * Toolbar with all its controls
  */
@@ -211,6 +242,7 @@ Editor.prototype.createWidgets = function() {
 	this.exportContainer = $('<div id="export-area"><textarea id="export"></textarea></div>').appendTo(this.container);
 
 	this.createDialog();
+	this.createInterpretationDialog();
 	this.createConfirm();
 };
 /**
@@ -235,6 +267,23 @@ Editor.prototype.createSpread = function(savedStructure) {
 Editor.prototype.getActiveDeck = function() {
 	return this.activeDeck;
 };
+/**
+ * Shows the interpretation box
+ */
+Editor.prototype.getCardInterpretation = function(cardCode) {
+	if(cardCode === '')
+		return;
+	var url = '/interpretations/by_code/'+ cardCode;
+	$.getJSON(url, $.proxy(function(data) {
+		if (data === null) return;
+		this.interpretationDialog.valueLabel.text('Карта: ' + this.settings.decks[this.activeDeck].cards[cardCode]);
+		this.interpretationDialog.valueField.text(data.text);
+		this.interpretationDialog.dialog("open");
+		console.log(data);
+	}, this)).error(function(jqXHR, textStatus, errorThrown) {
+		console.log(textStatus);
+	})
+}
 /**
  * Getter for the descriptions list
  */
