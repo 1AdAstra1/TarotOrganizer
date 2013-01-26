@@ -27,7 +27,7 @@ class SpreadsController < ApplicationController
   # GET /spreads/new.json
   def new
     @spread = current_user.spreads.build
-    @all_clients = Client.find_user_items(current_user.id, {}).collect {|item| [item.name, item.id]}
+    @all_clients = current_user.clients.collect {|item| [item.name, item.id]}
     @for_client = params[:client_id]
     respond_to do |format|
       format.html # new.html.erb

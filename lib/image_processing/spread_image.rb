@@ -10,7 +10,7 @@ class SpreadImage
     @path = ''
     @format = 'png'
     @dir = 'tmp'
-    @filename = 'spread_' + Digest::MD5.hexdigest(@id.to_s + @structure['width'] + @structure['height']) + '.' + @format
+    @filename = 'spread_' + Digest::MD5.hexdigest(@id.to_s + @structure['width'] + @structure['height'] + @structure['positions'].length.to_s) + '.' + @format
     @path = ''
 
     @localdir = Rails.root.join(@dir).to_s
