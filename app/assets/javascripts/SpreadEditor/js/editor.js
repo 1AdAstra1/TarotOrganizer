@@ -179,9 +179,9 @@ Editor.prototype.createInterpretationDialog = function() {
 		modal : false,
 		show : 'fade',
 		hide : 'fade',
-		title : 'Толкование карты',
+		title : 'Толкование',
 		buttons : {
-			"Скопировать в выпавшую карту" : function() {
+			"Скопировать в позицию расклада" : function() {
 				editorInstance.positionDialog.valueField.val(editorInstance.interpretationDialog.valueField.val());
 				$(this).dialog("close");
 			},
@@ -276,7 +276,7 @@ Editor.prototype.getCardInterpretation = function(cardCode) {
 	var url = '/interpretations/by_code/'+ cardCode;
 	$.getJSON(url, $.proxy(function(data) {
 		if (data === null) return;
-		this.interpretationDialog.valueLabel.text('Карта: ' + this.settings.decks[this.activeDeck].cards[cardCode]);
+		this.interpretationDialog.valueLabel.text('Аркан: ' + this.settings.decks[this.activeDeck].cards[cardCode]);
 		this.interpretationDialog.valueField.text(data.text);
 		this.interpretationDialog.dialog("open");
 		console.log(data);
