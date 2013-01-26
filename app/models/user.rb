@@ -14,12 +14,14 @@ class User < ActiveRecord::Base
   @@roles = {:admin => "Администратор", :paid_user => "Платный аккаунт", :user => "Базовый аккаунт" }
   
   def method_missing(method_name, *args)
+    super
+  rescue NoMethodError
     case method_name
-     when /^is_(\w+)?/ then
+    when /^is_(\w+)?/ then
       if(self.role) then self.role == $1 else false end
     else
       raise
-    end
+    end    
   end
   
   def self.all_roles
