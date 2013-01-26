@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   def method_missing(method_name, *args)
     case method_name
      when /^is_(\w+)?/ then
-      self.role == $1
+      if(self.role) then self.role == $1 else false end
     else
       raise
     end
