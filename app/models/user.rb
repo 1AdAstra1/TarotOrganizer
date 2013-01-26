@@ -1,3 +1,4 @@
+#encoding: utf-8
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -6,17 +7,27 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :role
   has_many :clients, :dependent => :destroy
   has_many :spreads, :dependent => :destroy
-  ROLES = %w[admin paid_user user]
+  after_create :setup_role
+  @@roles = {:admin => "Администратор", :paid_user => "Платный аккаунт", :user => "Базовый аккаунт" }
   
   def method_missing(method_name, *args)
     case method_name
      when /^is_(\w+)?/ then
-      role == $1
+      self.role == $1
     else
       raise
     end
   end
+  
+  def self.all_roles
+    @@roles
+  end
+  
+  def setup_role
+    self.role = :user
+  end
+  
 end

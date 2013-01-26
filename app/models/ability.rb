@@ -7,7 +7,7 @@ class Ability
     if user.is_admin?
       can :manage, :all
     else
-      can :manage, Interpretation
+      can :read, Interpretation
       can :manage, Client, :user_id => user.id
       can :manage, Spread, :user_id => user.id
     end

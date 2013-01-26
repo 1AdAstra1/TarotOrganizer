@@ -1,5 +1,9 @@
 TarotOrganizer::Application.routes.draw do
 
+  get "users/index"
+
+  post "users/edit"
+
   resources :interpretations
 
 
