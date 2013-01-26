@@ -1,0 +1,18 @@
+%h3.entry-title Пользователи
+%div.post
+  %div.post-body 
+    = form_tag 'edit', :method => :post do
+      %table.spreads-table
+        %tr
+          %th Логин
+          %th Статус
+          %th Количество раскладов
+      
+        - @users.each do |user|
+          %tr
+            %td
+              = hidden_field_tag 'users[][id]', user.id
+              = user.email
+            %td= select_tag 'users[][role]', options_for_select(User.all_roles.invert, user.role)
+            %td= user.spreads.length
+      = submit_tag 'Сохранить', :id => 'save_users'
