@@ -210,3 +210,11 @@ div.ui-dialog {
 textarea.interpretation {
 	height: 270px;
 }
+
+div.help-area ul {
+	list-style-position: inside;
+}
+
+div.help-area ul li {
+	padding-bottom: 10px;
+}

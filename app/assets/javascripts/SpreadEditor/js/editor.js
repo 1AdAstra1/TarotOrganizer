@@ -54,6 +54,11 @@ Editor.prototype.addEvents = function() {
 			this.saveDialog();
 		}
 	}, this));
+	
+	this.buttons.help.click($.proxy(function(e) {
+		e.preventDefault();
+		this.helpWindow.dialog("open");
+	}, this));
 };
 /**
  * Adds the spread-specific event handlers
@@ -167,6 +172,24 @@ Editor.prototype.createDialog = function() {
 	}, this));
 };
 
+Editor.prototype.createHelpWindow = function() {
+	this.helpWindow = $('<div class="help-area"><ul><li>Одиночный щелчок по карте открывает окно ввода описания.</li><li>Двойной щелчок по карте поворачивает её на 90 градусов.</li><li>Щелчок правой клавишей удаляет её.</li><li>Перемещая нижний и правый края поля, вы можете изменить его размер.</li><li>Получив HTML или BBCode расклада и скопировав его в буфер обмена, вы можете вставить его в блог или на свой сайт и поделиться своим раскладом с мирозданием :)</li></div>');
+	this.helpWindow.dialog({
+		autoOpen : false,
+		height : 345,
+		width : 490,
+		modal : false,
+		show : 'fade',
+		hide : 'fade',
+		title : 'Помощь',
+		buttons : {
+			"OK" : function() {
+				$(this).dialog("close");
+			}
+		}
+	});
+};
+
 Editor.prototype.createInterpretationDialog = function() {
 	var editorInstance = this;
 	this.interpretationDialog = $('<div class="interpretation-area"></div>');
@@ -190,7 +213,8 @@ Editor.prototype.createInterpretationDialog = function() {
 			}
 		}
 	});
-}
+};
+
 /**
  * Toolbar with all its controls
  */
@@ -201,6 +225,7 @@ Editor.prototype.createToolbar = function() {
 	this.buttons.addPosition = $('<button id="add_position">Добавить карту</button>').button().appendTo(this.toolbar);
 	this.buttons.removeCards = $('<button id="add_position">Убрать значения</button>').button().appendTo(this.toolbar);
 	this.buttons.newSpread = $('<button id="new_spread">Удалить всё</button>').button().appendTo(this.toolbar);
+	this.buttons.help = $('<button id="help">Помощь</button>').button().appendTo(this.toolbar);
 	this.buttons.randomCard = $('<button id="random_card">Случайная карта</button>').button().appendTo(this.toolbar);
 	this.toolbar.append($('<hr />'));
 
@@ -243,6 +268,7 @@ Editor.prototype.createWidgets = function() {
 
 	this.createDialog();
 	this.createInterpretationDialog();
+	this.createHelpWindow();
 	this.createConfirm();
 };
 /**
@@ -283,7 +309,8 @@ Editor.prototype.getCardInterpretation = function(cardCode) {
 	}, this)).error(function(jqXHR, textStatus, errorThrown) {
 		console.log(textStatus);
 	})
-}
+};
+
 /**
  * Getter for the descriptions list
  */
