@@ -8,6 +8,7 @@ class Ability
       can :manage, :all
     else
       can :read, Interpretation
+      can :by_code, Interpretation
       can :manage, Client, :user_id => user.id
       can :manage, Spread, :user_id => user.id
     end
